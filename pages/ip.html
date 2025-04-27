@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>정밀 IP 추적기 | YouNeedThis</title>
+
+  <!-- 공통 스타일 -->
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <!-- Leaflet 지도용 CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-A+ZG4P6zt05OL5OLkeP3GcTmFmpyZz3gDN6O2j5WC3c="
+    crossorigin=""
+  />
+
+  <style>
+    /* 지도 컨테이너 */
+    #map {
+      width: 100%;
+      height: 300px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    /* 조회 영역 */
+    .lookup-section {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .lookup-section input,
+    .lookup-section button {
+      font-size: 16px;
+      padding: 12px;
+      border-radius: 4px;
+    }
+    .lookup-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    /* 결과 정보 박스 */
+    #infoBox {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 16px;
+      background: #eef3f8;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 1.6;
+      display: none;
+    }
+    #infoBox div { margin-bottom: 6px; }
+    #infoBox .label { font-weight: bold; color: #336699; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <a href="/index.html">
+          <img src="../assets/img/logo.svg" alt="YouNeedThis 로고" />
+        </a>
+        <span class="slogan">유용한 생활도구 모음</span>
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="/pages/vat.html">부가세 계산기</a></li>
+          <li><a href="/pages/convert.html">이름 변환기</a></li>
+          <li><a href="/pages/ip.html">IP 추적기</a></li>
+        </ul>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="vat-header">
+      <h1>정밀 IP 추적기</h1>
+      <p>IP 주소로 위치, 통신사, 기기종류를 바로 확인하세요.</p>
+    </section>
+
+    <div class="lookup-section">
+      <input
+        id="ipInput"
+        type="text"
+        placeholder="IP 주소 입력 (빈칸은 내 IP 조회)"
+      />
+      <div class="lookup-buttons">
+        <button id="btnLookup">조회</button>
+        <button id="btnMyIP">내 IP</button>
+      </div>
+    </div>
+
+    <div id="infoBox">
+      <div><span class="label">IP 주소:</span> <span id="ipAddr">-</span></div>
+      <div><span class="label">위치:</span> <span id="location">-</span></div>
+      <div><span class="label">ISP:</span> <span id="isp">-</span></div>
+      <div><span class="label">좌표:</span> <span id="coords">-</span></div>
+      <div><span class="label">기기 종류:</span> <span id="device">-</span></div>
+    </div>
+
+    <div id="map"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 YouNeedThis. All rights reserved.</p>
+  </footer>
+
+  <!-- 메뉴 토글 스크립트 -->
+  <script src="../assets/js/main.js"></script>
+
+  <!-- Leaflet 지도용 JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-GZCkYQkD9+AXhL7vKDHCXpQIs5ENIyOX2fMcDwFzYKk="
+    crossorigin=""
+  ></script>
+
+  <!-- IP 조회 & 지도 초기화 로직 -->
+  <script src="../assets/js/ip.js"></script>
+</body>
+</html>
+
