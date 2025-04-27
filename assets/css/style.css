@@ -15,6 +15,9 @@
   header {
     background: #003366;
     color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
   
   .header-inner {
@@ -41,6 +44,7 @@
     color: #cce0ff;
   }
   
+  /* Navigation */
   .nav ul {
     list-style: none;
     display: flex;
@@ -59,11 +63,11 @@
   
   .menu-toggle {
     display: none;
-    font-size: 24px;
+    font-size: 26px;
     cursor: pointer;
   }
   
-  /* Main Banner */
+  /* 메인 배너 */
   .main-banner {
     text-align: center;
     padding: 80px 20px 40px;
@@ -79,7 +83,7 @@
     color: #555;
   }
   
-  /* Ads Space */
+  /* 광고 영역 */
   .ads-space {
     margin: 40px auto;
     width: 90%;
@@ -94,7 +98,7 @@
     border-radius: 8px;
   }
   
-  /* Tools Section */
+  /* 도구 카드 */
   .tools-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -129,46 +133,63 @@
     color: #666;
   }
   
-  /* Footer */
-  footer {
-    background: #f0f0f0;
-    padding: 20px;
+  /* 부가세 계산기 상단 */
+  .vat-header {
     text-align: center;
-    font-size: 14px;
-    color: #777;
-    margin-top: 40px;
+    padding: 60px 20px 20px;
   }
   
-  /* VAT Calculator */
-  .vat-calculator {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 0 20px;
-    text-align: center;
-  }
-  
-  .vat-calculator h1 {
+  .vat-header h1 {
     font-size: 28px;
     margin-bottom: 10px;
   }
   
-  .vat-calculator p {
+  .vat-header p {
     font-size: 16px;
     color: #555;
-    margin-bottom: 30px;
   }
   
+  /* 부가세 계산기 전체 래퍼 */
+  .vat-calculators {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  
+  /* 계산기 박스 */
   .calculator {
     background: white;
     padding: 30px 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+  }
+  
+  /* 리본 탭 */
+  .info-label {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    transform: translateY(-100%);
+    background: #0074D9;
+    color: white;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px 4px 0 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
   }
   
   .input-group {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   .input-group input {
@@ -189,10 +210,17 @@
     cursor: pointer;
   }
   
-  .results {
+  .note {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 20px;
+  }
+  
+  .result-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 16px;
+    margin-bottom: 20px;
   }
   
   .result-line {
@@ -201,10 +229,59 @@
     border-radius: 6px;
     display: flex;
     justify-content: space-between;
-    font-size: 16px;
+    align-items: center;
   }
   
-  /* Responsive (모바일 대응) */
+  .label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #336699;
+  }
+  
+  .value-box {
+    display: flex;
+    align-items: center;
+  }
+  
+  .value-box .value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #222;
+  }
+  
+  .value-box .unit {
+    font-size: 16px;
+    opacity: 0.5;
+    margin-left: 6px;
+    font-weight: bold;
+  }
+  
+  .reset-button {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .reset-button button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Footer */
+  footer {
+    background: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+    margin-top: 40px;
+  }
+  
+  /* 반응형 */
   @media (max-width: 768px) {
     .nav ul {
       display: none;
@@ -223,6 +300,11 @@
   
     .menu-toggle {
       display: block;
+    }
+  
+    .vat-calculators {
+      flex-direction: column;
+      align-items: center;
     }
   }
   

@@ -1,3 +1,4 @@
+// 햄버거 메뉴 열기/닫기 + 외부 클릭시 닫기
 const menuToggle = document.getElementById('menu-toggle');
 const nav = document.getElementById('nav');
 
