@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="한글 이름을 정확한 로마자(영문)로 변환하세요. 관습표기와 공식표기 모두 지원합니다.">
+  <title>한글 이름 로마자 변환기 | YouNeedThis</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <a href="/index.html">
+        <img src="../assets/img/logo.svg" alt="YouNeedThis 로고" />
+      </a>
+      <span class="slogan">유용한 생활도구 모음</span>
+    </div>
+    <nav class="nav" id="nav">
+      <ul>
+        <li><a href="/index.html">홈</a></li>
+        <li><a href="/pages/vat.html">부가세 계산기</a></li>
+        <li><a href="/pages/convert.html">이름 변환기</a></li>
+      </ul>
+    </nav>
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+  </div>
+</header>
+
+<main>
+  <section class="vat-header">
+    <h1>정확한 한글 이름 로마자 변환기</h1>
+    <p>공식 로마자 + 관습 표기 모두 제공합니다.</p>
+  </section>
+
+  <section class="ads-space">
+    광고 자리
+  </section>
+
+  <section class="vat-calculators">
+    <div class="calculator">
+      <div class="info-label">한글 이름 입력</div>
+      <div class="input-group">
+        <input type="text" id="koreanNameInput" placeholder="예: 김기석" />
+        <button id="convertButton">변환하기</button>
+      </div>
+      <div class="note">* 한글 이름 입력 후 변환 버튼을 누르거나 엔터 키를 누르세요.</div>
+
+      <div class="result-wrapper" id="resultWrapper" style="display:none;">
+        <div class="result-line">
+          <div class="label">관습 표기</div>
+          <div class="value-box">
+            <span class="value" id="commonResult">-</span>
+          </div>
+        </div>
+        <div class="result-line">
+          <div class="label">공식 로마자 표기</div>
+          <div class="value-box">
+            <span class="value" id="officialResult">-</span>
+          </div>
+        </div>
+        <div class="reset-button">
+          <button id="copyButton">관습 표기 복사</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 YouNeedThis</p>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/convert.js"></script>
+
+</body>
+</html>
