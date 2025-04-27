@@ -12,7 +12,6 @@ function initMap() {
 }
 
 async function lookupIP(ip) {
-  // ipinfo.io 토큰을 여기 넣으세요
   const token = '353ab7e1d08969';
   const url = ip
     ? `https://ipinfo.io/${ip}/json?token=${token}`
@@ -38,8 +37,8 @@ async function lookupIP(ip) {
     document.getElementById('device').textContent = detectDevice();
 
     if (marker && loc) {
-      marker.setLatLng([parseFloat(loc[0]), parseFloat(loc[1])]);
-      map.setView([parseFloat(loc[0]), parseFloat(loc[1])], 13);
+      marker.setLatLng([+loc[0], +loc[1]]);
+      map.setView([+loc[0], +loc[1]], 13);
     }
   } catch (err) {
     alert('조회 실패: ' + err.message);
@@ -57,15 +56,12 @@ function detectDevice() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initMap();
-
   document.getElementById('btnLookup').addEventListener('click', () => {
     lookupIP(document.getElementById('ipInput').value.trim());
   });
-
   document.getElementById('btnMyIP').addEventListener('click', () => {
     lookupIP('');
   });
-
   document.getElementById('ipInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') {
       e.preventDefault();

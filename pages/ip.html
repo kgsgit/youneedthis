@@ -5,15 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>정밀 IP 추적기 | YouNeedThis</title>
 
-  <!-- 공통 스타일 -->
-  <link rel="stylesheet" href="../assets/css/style.css" />
+  <!-- 공통 스타일 (절대경로) -->
+  <link rel="stylesheet" href="/assets/css/style.css" />
 
-  <!-- Leaflet 지도용 CSS -->
+  <!-- Leaflet 지도용 CSS (integrity 제거) -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-    integrity="sha256-A+ZG4P6zt05OL5OLkeP3GcTmFmpyZz3gDN6O2j5WC3c="
-    crossorigin=""
   />
 
   <style>
@@ -64,11 +62,12 @@
     <div class="header-inner">
       <div class="logo">
         <a href="/index.html">
-          <img src="../assets/img/logo.svg" alt="YouNeedThis 로고" />
+          <img src="/assets/img/logo.svg" alt="YouNeedThis 로고" />
         </a>
         <span class="slogan">유용한 생활도구 모음</span>
       </div>
-      <nav class="nav">
+      <!-- id="nav" 추가 -->
+      <nav class="nav" id="nav">
         <ul>
           <li><a href="/pages/vat.html">부가세 계산기</a></li>
           <li><a href="/pages/convert.html">이름 변환기</a></li>
@@ -113,17 +112,14 @@
   </footer>
 
   <!-- 메뉴 토글 스크립트 -->
-  <script src="../assets/js/main.js"></script>
+  <script src="/assets/js/main.js"></script>
 
-  <!-- Leaflet 지도용 JS -->
+  <!-- Leaflet 지도용 JS (integrity 제거) -->
   <script
     src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-    integrity="sha256-GZCkYQkD9+AXhL7vKDHCXpQIs5ENIyOX2fMcDwFzYKk="
-    crossorigin=""
   ></script>
 
   <!-- IP 조회 & 지도 초기화 로직 -->
-  <script src="../assets/js/ip.js"></script>
+  <script src="/assets/js/ip.js"></script>
 </body>
 </html>
-
