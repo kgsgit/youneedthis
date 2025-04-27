@@ -9,6 +9,7 @@
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #f9fafc;
     color: #222;
+    overflow-x: hidden;
   }
   
   /* Header */
@@ -85,7 +86,7 @@
   
   /* 광고 영역 */
   .ads-space {
-    margin: 40px auto;
+    margin: 60px auto 40px;
     width: 90%;
     max-width: 970px;
     height: 90px;
@@ -97,7 +98,7 @@
     font-size: 14px;
     border-radius: 8px;
   }
-  
+
   /* 도구 카드 */
   .tools-section {
     display: grid;
@@ -149,14 +150,14 @@
     color: #555;
   }
   
-  /* 부가세 계산기 전체 래퍼 */
+  /* 부가세 계산기 전체 */
   .vat-calculators {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 40px;
+    gap: 50px;
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 60px auto;
     padding: 0 20px;
   }
   
@@ -186,6 +187,7 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.15);
   }
   
+  /* 입력 그룹 */
   .input-group {
     display: flex;
     gap: 10px;
@@ -210,12 +212,14 @@
     cursor: pointer;
   }
   
+  /* 안내 문구 */
   .note {
     font-size: 13px;
     color: #777;
     margin-bottom: 20px;
   }
   
+  /* 결과 박스 */
   .result-wrapper {
     display: flex;
     flex-direction: column;
@@ -256,6 +260,7 @@
     font-weight: bold;
   }
   
+  /* 초기화 버튼 */
   .reset-button {
     display: flex;
     justify-content: flex-end;
@@ -278,7 +283,7 @@
     text-align: center;
     font-size: 14px;
     color: #777;
-    margin-top: 40px;
+    margin-top: 60px;
   }
   
   /* 반응형 */
@@ -305,6 +310,17 @@
     .vat-calculators {
       flex-direction: column;
       align-items: center;
+      padding: 0 10px;
+    }
+  
+    .input-group input {
+      padding: 10px;
+      font-size: 16px;
+    }
+  
+    .input-group button {
+      padding: 10px 14px;
+      font-size: 15px;
     }
   }
   

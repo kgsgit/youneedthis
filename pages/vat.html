@@ -37,6 +37,7 @@
 
   <section class="ads-space">
     <!-- 광고 자리 -->
+    광고 영역
   </section>
 
   <section class="vat-calculators">
@@ -102,12 +103,22 @@
 
 <script src="../assets/js/main.js"></script>
 <script>
-  // 합계금액 기준 계산
+  function addEnterKey(inputElem, button) {
+    inputElem.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        button.click();
+      }
+    });
+  }
+
   const totalInput = document.getElementById("totalInput");
   const calculateTotalButton = document.getElementById("calculateTotalButton");
   const resetTotalButton = document.getElementById("resetTotalButton");
   const supplyResult = document.getElementById("supplyResult");
   const vatResult = document.getElementById("vatResult");
+
+  addEnterKey(totalInput, calculateTotalButton);
 
   calculateTotalButton.addEventListener("click", () => {
     const total = parseFloat(totalInput.value.replace(/,/g, ''));
@@ -125,12 +136,13 @@
     vatResult.textContent = '-';
   });
 
-  // 공급가액 기준 계산
   const supplyInput = document.getElementById("supplyInput");
   const calculateSupplyButton = document.getElementById("calculateSupplyButton");
   const resetSupplyButton = document.getElementById("resetSupplyButton");
   const totalResult = document.getElementById("totalResult");
   const vatSupplyResult = document.getElementById("vatSupplyResult");
+
+  addEnterKey(supplyInput, calculateSupplyButton);
 
   calculateSupplyButton.addEventListener("click", () => {
     const supply = parseFloat(supplyInput.value.replace(/,/g, ''));
