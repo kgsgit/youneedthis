@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>정밀 IP 추적기 | YouNeedThis</title>
+  <title>빠른 IP 추적기 | YouNeedThis</title>
 
   <!-- 공통 스타일 (절대경로) -->
   <link rel="stylesheet" href="/assets/css/style.css" />
 
-  <!-- Leaflet 지도용 CSS (integrity 제거) -->
+  <!-- Leaflet CSS (integrity 제거) -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
@@ -22,6 +22,7 @@
       border-radius: 8px;
       margin-top: 20px;
     }
+
     /* 조회 영역 */
     .lookup-section {
       max-width: 500px;
@@ -31,16 +32,26 @@
       flex-direction: column;
       gap: 10px;
     }
+
+    .ip-note {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.4;
+    }
+
     .lookup-section input,
     .lookup-section button {
       font-size: 16px;
       padding: 12px;
       border-radius: 4px;
+      border: 1px solid #ccc;
     }
+
     .lookup-buttons {
       display: flex;
       gap: 10px;
     }
+
     /* 결과 정보 박스 */
     #infoBox {
       max-width: 500px;
@@ -66,7 +77,6 @@
         </a>
         <span class="slogan">유용한 생활도구 모음</span>
       </div>
-      <!-- id="nav" 추가 -->
       <nav class="nav" id="nav">
         <ul>
           <li><a href="/pages/vat.html">부가세 계산기</a></li>
@@ -80,11 +90,14 @@
 
   <main>
     <section class="vat-header">
-      <h1>정밀 IP 추적기</h1>
-      <p>IP 주소로 위치, 통신사, 기기종류를 바로 확인하세요.</p>
+      <h1>빠른 IP 추적기</h1>
+      <p>IP 주소로 위치, 통신사, 기기 종류를 즉시 확인하세요.</p>
     </section>
 
     <div class="lookup-section">
+      <p class="ip-note">
+        표시되는 위치 정보는 IP 기지국 기반의 대략적인 위치입니다. 실제 위치와 차이가 있을 수 있으니 참고용으로만 활용해 주세요.
+      </p>
       <input
         id="ipInput"
         type="text"
@@ -114,12 +127,10 @@
   <!-- 메뉴 토글 스크립트 -->
   <script src="/assets/js/main.js"></script>
 
-  <!-- Leaflet 지도용 JS (integrity 제거) -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-  ></script>
+  <!-- Leaflet JS (integrity 제거) -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 
-  <!-- IP 조회 & 지도 초기화 로직 -->
+  <!-- IP 조회 & 지도 로직 -->
   <script src="/assets/js/ip.js"></script>
 </body>
 </html>

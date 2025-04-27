@@ -2,6 +2,7 @@
 
 let map, marker;
 
+// 지도 초기화
 function initMap() {
   if (typeof L === 'undefined') return;
   map = L.map('map').setView([37.5665, 126.9780], 13);
@@ -18,7 +19,9 @@ async function lookupIP(ip) {
     : `https://ipinfo.io/json?token=${token}`;
 
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      headers: { 'Accept-Language': 'ko' }  // 한국어 응답 요청
+    });
     if (!res.ok) throw new Error(res.statusText);
     const d = await res.json();
     const loc = d.loc ? d.loc.split(',') : null;
@@ -26,10 +29,12 @@ async function lookupIP(ip) {
     document.getElementById('infoBox').style.display = 'block';
     document.getElementById('ipAddr').textContent = d.ip || '-';
     document.getElementById('location').textContent =
-      d.country && d.region && d.city
-        ? `${d.country}, ${d.region}, ${d.city}`
+      d.country      // 나라 코드를 한국어로 변환
+        ? new Intl.DisplayNames(['ko'], { type: 'region' }).of(d.country)
+          + (d.region ? `, ${d.region}` : '')
+          + (d.city   ? `, ${d.city}`   : '')
         : '-';
-    document.getElementById('isp').textContent = d.org || '-';
+    document.getElementById('isp').textContent   = d.org  || '-';
     document.getElementById('coords').textContent =
       loc
         ? `${parseFloat(loc[0]).toFixed(5)}, ${parseFloat(loc[1]).toFixed(5)}`
@@ -47,25 +52,27 @@ async function lookupIP(ip) {
 
 function detectDevice() {
   const ua = navigator.userAgent.toLowerCase();
-  if (ua.includes('android')) return '모바일(Android)';
+  if (ua.includes('android'))       return '모바일(Android)';
   if (ua.includes('iphone') || ua.includes('ipad')) return '모바일(iOS)';
-  if (ua.includes('windows')) return 'PC(Windows)';
-  if (ua.includes('macintosh')) return 'PC(Mac)';
+  if (ua.includes('windows'))       return 'PC(Windows)';
+  if (ua.includes('macintosh'))     return 'PC(Mac)';
   return '알 수 없음';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   initMap();
-  document.getElementById('btnLookup').addEventListener('click', () => {
-    lookupIP(document.getElementById('ipInput').value.trim());
-  });
-  document.getElementById('btnMyIP').addEventListener('click', () => {
-    lookupIP('');
-  });
-  document.getElementById('ipInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      lookupIP(e.target.value.trim());
-    }
-  });
+
+  document.getElementById('btnLookup')
+    .addEventListener('click', () => lookupIP(document.getElementById('ipInput').value.trim()));
+
+  document.getElementById('btnMyIP')
+    .addEventListener('click', () => lookupIP(''));
+
+  document.getElementById('ipInput')
+    .addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        lookupIP(e.target.value.trim());
+      }
+    });
 });
