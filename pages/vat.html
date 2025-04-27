@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>정확한 부가세 계산기 | YouNeedThis</title>
+  <meta name="description" content="간편하게 부가세 계산을 할 수 있는 무료 계산기입니다. 합계금액과 공급가액을 빠르게 확인하세요.">
+<meta name="keywords" content="부가세 계산기, 부가세 자동계산, 간편 부가세, VAT 계산기, 홈택스 계산기">
+<meta name="author" content="YouNeedThis">
+<meta property="og:title" content="정확한 부가세 계산기 | YouNeedThis">
+<meta property="og:description" content="쉽고 빠르게 부가세를 계산할 수 있는 무료 서비스입니다.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://youneedthis.kr/">
+<meta property="og:image" content="https://youneedthis.kr/your-thumbnail.jpg">
+<meta name="naver-site-verification" content="naverb2a487ebe7f6b2b01fc92c89f76e0b84.html" />
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <style>
+    /* CSS 변수 선언 */
+    :root {
+      --primary-color: #0074D9;
+      --bg-color: #f5f7fa;
+      --box-bg: #eef3f8;
+      --text-color: #003366;
+      --light-text: #666;
+    }
+    body {
+      margin: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: var(--bg-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      margin-top: 40px;
+    }
+    header h1 {
+      font-size: 24px;
+      color: var(--text-color);
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 14px;
+      color: var(--light-text);
+      margin-bottom: 120px;
+    }
+    /* 그리드 레이아웃 사용 */
+    .calculators {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 80px 20px;
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .calculator {
+      position: relative;
+      background: white;
+      border-radius: 8px;
+      padding: 50px 25px 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+    }
+    /* 리본 탭 디자인 */
+    .info-label {
+      position: absolute;
+      top: 0;
+      left: 0px;
+      transform: translateY(-100%);
+      background: var(--primary-color);
+      color: white;
+      padding: 8px 16px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px 4px 0 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+    .input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .input-group input {
+      flex: 1;
+      padding: 14px;
+      font-size: 18px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .input-group button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .note {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 20px;
+    }
+    .result-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .result-line {
+      background: var(--box-bg);
+      padding: 16px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .label {
+      font-size: 16px;
+      font-weight: bold;
+      color: #336699;
+    }
+    .value-box {
+      display: flex;
+      align-items: center;
+    }
+    .value-box .value {
+      font-size: 32px;
+      font-weight: bold;
+      color: #222;
+    }
+    .value-box .unit {
+      font-size: 16px;
+      opacity: 0.5;
+      margin-left: 6px;
+      font-weight: bold;
+    }
+    .reset-button {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .reset-button button {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #aaa;
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>정확한 부가세 계산기</h1>
+  <p>홈택스보다 더 빠르고 정확하게 계산합니다.</p>
+</header>
+
+<div class="calculators">
+  <!-- 합계금액 알고 있는 경우 -->
+  <div class="calculator" id="totalCalculator">
+    <div class="info-label">합계금액을 알고 있는 경우</div>
+    <div class="input-group">
+      <input type="text" id="totalInput" placeholder="숫자만 입력하세요" />
+      <button id="calculateTotalButton">계산하기</button>
+    </div>
+    <div class="note">* 합계금액을 입력하세요.</div>
+    <div class="result-wrapper">
+      <div class="result-line">
+        <div class="label">공급가액</div>
+        <div class="value-box">
+          <span class="value" id="supplyResult">-</span><span class="unit">원</span>
+        </div>
+      </div>
+      <div class="result-line">
+        <div class="label">부가세</div>
+        <div class="value-box">
+          <span class="value" id="vatResult">-</span><span class="unit">원</span>
+        </div>
+      </div>
+    </div>
+    <div class="reset-button">
+      <button id="resetTotalButton">초기화</button>
+    </div>
+  </div>
+
+  <!-- 공급가액 알고 있는 경우 -->
+  <div class="calculator" id="supplyCalculator">
+    <div class="info-label">공급가액을 알고 있는 경우</div>
+    <div class="input-group">
+      <input type="text" id="supplyInput" placeholder="숫자만 입력하세요" />
+      <button id="calculateSupplyButton">계산하기</button>
+    </div>
+    <div class="note">* 공급가액을 입력하세요.</div>
+    <div class="result-wrapper">
+      <div class="result-line">
+        <div class="label">합계금액</div>
+        <div class="value-box">
+          <span class="value" id="totalResult">-</span><span class="unit">원</span>
+        </div>
+      </div>
+      <div class="result-line">
+        <div class="label">부가세</div>
+        <div class="value-box">
+          <span class="value" id="vatSupplyResult">-</span><span class="unit">원</span>
+        </div>
+      </div>
+    </div>
+    <div class="reset-button">
+      <button id="resetSupplyButton">초기화</button>
+    </div>
+  </div>
+</div>
+
+<footer>© 2025 YouNeedThis</footer>
+
+<script>
+  function addEnterKey(inputElem, calcBtn) {
+    inputElem.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        calcBtn.click();
+      }
+    });
+  }
+  const totalInput = document.getElementById("totalInput");
+  const calculateTotalButton = document.getElementById("calculateTotalButton");
+  const resetTotalButton = document.getElementById("resetTotalButton");
+  const supplyResult = document.getElementById("supplyResult");
+  const vatResult = document.getElementById("vatResult");
+  addEnterKey(totalInput, calculateTotalButton);
+  calculateTotalButton.addEventListener("click", () => {
+    const total = parseFloat(totalInput.value.replace(/,/g, ''));
+    if (!isNaN(total) && total > 0) {
+      const supply = Math.round(total / 1.1);
+      const vat = total - supply;
+      supplyResult.textContent = supply.toLocaleString();
+      vatResult.textContent = vat.toLocaleString();
+    } else {
+      supplyResult.textContent = '-';
+      vatResult.textContent = '-';
+    }
+  });
+  resetTotalButton.addEventListener("click", () => {
+    totalInput.value = '';
+    supplyResult.textContent = '-';
+    vatResult.textContent = '-';
+  });
+  const supplyInput = document.getElementById("supplyInput");
+  const calculateSupplyButton = document.getElementById("calculateSupplyButton");
+  const resetSupplyButton = document.getElementById("resetSupplyButton");
+  const totalResult = document.getElementById("totalResult");
+  const vatSupplyResult = document.getElementById("vatSupplyResult");
+  addEnterKey(supplyInput, calculateSupplyButton);
+  calculateSupplyButton.addEventListener("click", () => {
+    const supply = parseFloat(supplyInput.value.replace(/,/g, ''));
+    if (!isNaN(supply) && supply > 0) {
+      const total = Math.round(supply * 1.1);
+      const vat = total - supply;
+      totalResult.textContent = total.toLocaleString();
+      vatSupplyResult.textContent = vat.toLocaleString();
+    } else {
+      totalResult.textContent = '-';
+      vatSupplyResult.textContent = '-';
+    }
+  });
+  resetSupplyButton.addEventListener("click", () => {
+    supplyInput.value = '';
+    totalResult.textContent = '-';
+    vatSupplyResult.textContent = '-';
+  });
+</script>
+
+</body>
+</html>
