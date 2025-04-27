@@ -29,22 +29,22 @@
   .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
   }
   
   .logo img {
-    height: 50px;
+    height: 40px;
   }
   
   .slogan {
-    font-size: 16px;
+    font-size: 14px;
     color: #cce0ff;
   }
   
   .nav ul {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 20px;
   }
   
   .nav a {
@@ -71,7 +71,7 @@
   
   .main-banner h1 {
     font-size: 32px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
   
   .main-banner p {
@@ -139,7 +139,72 @@
     margin-top: 40px;
   }
   
-  /* Responsive (Mobile) */
+  /* VAT Calculator */
+  .vat-calculator {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+  
+  .vat-calculator h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .vat-calculator p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  .calculator {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  
+  .input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .input-group input {
+    flex: 1;
+    padding: 14px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .input-group button {
+    background: #0074D9;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .results {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .result-line {
+    background: #f0f4f8;
+    padding: 14px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+  }
+  
+  /* Responsive (모바일 대응) */
   @media (max-width: 768px) {
     .nav ul {
       display: none;
