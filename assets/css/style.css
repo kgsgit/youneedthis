@@ -1,0 +1,163 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f9fafc;
+    color: #222;
+  }
+  
+  /* Header */
+  header {
+    background: #003366;
+    color: white;
+  }
+  
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .slogan {
+    font-size: 16px;
+    color: #cce0ff;
+  }
+  
+  .nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+  }
+  
+  .nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .nav a:hover {
+    text-decoration: underline;
+  }
+  
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  /* Main Banner */
+  .main-banner {
+    text-align: center;
+    padding: 80px 20px 40px;
+  }
+  
+  .main-banner h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+  
+  .main-banner p {
+    font-size: 18px;
+    color: #555;
+  }
+  
+  /* Ads Space */
+  .ads-space {
+    margin: 40px auto;
+    width: 90%;
+    max-width: 970px;
+    height: 90px;
+    background: #eef3f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+  
+  /* Tools Section */
+  .tools-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  
+  .tool-card {
+    background: white;
+    border: 1px solid #dde3ea;
+    border-radius: 8px;
+    text-align: center;
+    padding: 30px 20px;
+    transition: 0.3s;
+  }
+  
+  .tool-card:hover {
+    border-color: #0074D9;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .tool-card h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #003366;
+  }
+  
+  .tool-card p {
+    font-size: 15px;
+    color: #666;
+  }
+  
+  /* Footer */
+  footer {
+    background: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+    margin-top: 40px;
+  }
+  
+  /* Responsive (Mobile) */
+  @media (max-width: 768px) {
+    .nav ul {
+      display: none;
+      flex-direction: column;
+      background: #003366;
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      padding: 10px 20px;
+      border: 1px solid #004080;
+    }
+  
+    .nav ul.show {
+      display: flex;
+    }
+  
+    .menu-toggle {
+      display: block;
+    }
+  }
+  
