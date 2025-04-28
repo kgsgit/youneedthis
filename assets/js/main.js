@@ -1,33 +1,17 @@
 // assets/js/main.js
 
-// 공통 컴포넌트 삽입 로직
-async function includeHTML() {
-  const parts = [
-    { id: 'header-placeholder', url: '/header.html' },
-    { id: 'ads-placeholder',    url: '/ads-slot.html' },
-    { id: 'footer-placeholder', url: '/footer.html' }
-  ];
-  for (const {id, url} of parts) {
-    const el = document.getElementById(id);
-    if (!el) continue;
-    try {
-      const res = await fetch(url);
-      if (res.ok) el.innerHTML = await res.text();
-    } catch (e) {
-      console.error(`Include ${url} failed:`, e);
-    }
-  }
-}
-
-document.addEventListener('DOMContentLoaded', async () => {
-  // 공통 컴포넌트 로드
-  await includeHTML();
-
+document.addEventListener('DOMContentLoaded', () => {
   // 메뉴 토글 기능
   const menuToggle = document.getElementById('menu-toggle');
   const navList    = document.querySelector('.nav ul');
+
   if (menuToggle && navList) {
-    menuToggle.addEventListener('click', () => navList.classList.toggle('show'));
+    // 햄버거 클릭 시 메뉴 보이기/숨기기
+    menuToggle.addEventListener('click', e => {
+      e.stopPropagation();
+      navList.classList.toggle('show');
+    });
+    // 바디 클릭 시 메뉴 닫기
     document.addEventListener('click', e => {
       if (!navList.contains(e.target) && e.target !== menuToggle) {
         navList.classList.remove('show');
