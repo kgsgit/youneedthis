@@ -1,0 +1,41 @@
+---
+layout: base.njk
+title: "환율 계산기 | YouNeedThis"
+description: "실시간 환율 기반 변환 도구"
+permalink: "/pages/exchange.html"
+---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>환율 계산기 | YouNeedThis</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <div id="ads-placeholder"></div>
+
+  <section class="exchange-converter" style="max-width:600px; margin:40px auto;">
+    <div style="border:1px solid #ddd; border-radius:8px; padding:20px;">
+      <h2 style="font-size:1.5rem; margin-bottom:16px; color:#003366;">환율 계산</h2>
+      <div style="display:flex; gap:10px; margin-bottom:20px;">
+        <select id="from-currency" style="flex:1; padding:12px; border:1px solid #ccc; border-radius:4px;"></select>
+        <button id="swap" style="background:#0074D9; color:#fff; border:none; padding:0 16px; border-radius:4px; cursor:pointer;">⇄</button>
+        <select id="to-currency" style="flex:1; padding:12px; border:1px solid #ccc; border-radius:4px;"></select>
+      </div>
+      <div style="display:flex; align-items:center; margin-bottom:20px;">
+        <input id="amount" type="text" placeholder="금액을 입력하세요"
+               style="flex:1; padding:12px; font-size:1rem; border:1px solid #ccc; border-radius:4px; margin-right:10px;" />
+        <button id="convert" style="background:#0074D9; color:#fff; border:none; padding:12px 20px; border-radius:4px; cursor:pointer;">변환하기</button>
+      </div>
+      <div id="loading" style="display:none; text-align:center; color:#999;">⏳ 변환 중...</div>
+      <div id="result" style="margin-top:20px; text-align:center; font-size:1.2rem; font-weight:bold;"></div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/exchange.js" defer></script>
+</body>
+</html>

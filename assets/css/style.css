@@ -348,4 +348,91 @@ footer {
     padding: 10px 14px;
     font-size: 15px;
   }
+
+
+ /* 환율 계산기 전용 */
+.exchange-calculator {
+  text-align: center;
+  padding: 40px 20px;
+}
+.calculator {
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  max-width: 400px;
+  margin: 0 auto 60px;
+}
+.calculator h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #003366;
+}
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #336699;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.inline-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#swap {
+  background: #0074D9;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+#swap:hover {
+  background: #005fa3;
+}
+#convert {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #0074D9;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+#convert:hover {
+  background: #005fa3;
+}
+.loading {
+  margin-top: 15px;
+  color: #555;
+}
+.result {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #222;
+  word-break: keep-all;
+}
+@media (max-width: 480px) {
+  .inline-group {
+    flex-direction: column;
+  }
+  #swap {
+    margin: 0 auto;
+  }
+}
 }

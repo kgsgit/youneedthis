@@ -1,0 +1,4 @@
+# dependencies
+node_modules/
+# Eleventy 빌드 결과물
+_site/

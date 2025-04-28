@@ -1,0 +1,133 @@
+---
+layout: base.njk
+title: "부가세 계산기 | YouNeedThis"
+description: "빠르고 정확한 부가세 계산기"
+permalink: "/pages/vat.html"
+---
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <meta name='description' content='빠르고 정확한 부가세 계산기 - 합계금액 또는 공급가액을 기준으로 부가세를 쉽게 계산하세요.' />
+  <meta name='keywords' content='부가세 계산기, 공급가액 계산, 합계금액 계산, YouNeedThis' />
+  <meta name='author' content='YouNeedThis' />
+  <title>쉽고 간편한 부가세 계산기 | YouNeedThis</title>
+  <link rel='stylesheet' href='/assets/css/style.css' />
+</head>
+<body>
+  <div id='header-placeholder'></div>
+
+  <main>
+    <section class='vat-header'>
+      <h1>쉽고 간편한 부가세 계산기</h1>
+      <p>입력하는 순간 즉시 확인할 수 있습니다.</p>
+    </section>
+
+    <div id='ads-placeholder'></div>
+
+    <section class='vat-calculators'>
+      <div class='calculator'>
+        <div class='info-label'>합계금액을 알고 있는 경우</div>
+        <div class='input-group'>
+          <input type='text' id='totalInput' placeholder='합계금액 입력' />
+          <button id='calculateTotalButton'>계산하기</button>
+        </div>
+        <div class='note'>* 합계금액을 입력하세요.</div>
+        <div class='result-wrapper'>
+          <div class='result-line'>
+            <div class='label'>공급가액</div>
+            <div class='value-box'>
+              <span class='value' id='supplyResult'>-</span><span class='unit'>원</span>
+            </div>
+          </div>
+          <div class='result-line'>
+            <div class='label'>부가세</div>
+            <div class='value-box'>
+              <span class='value' id='vatResult'>-</span><span class='unit'>원</span>
+            </div>
+          </div>
+        </div>
+        <div class='reset-button'>
+          <button id='resetTotalButton'>초기화</button>
+        </div>
+      </div>
+
+      <div class='calculator'>
+        <div class='info-label'>공급가액을 알고 있는 경우</div>
+        <div class='input-group'>
+          <input type='text' id='supplyInput' placeholder='공급가액 입력' />
+          <button id='calculateSupplyButton'>계산하기</button>
+        </div>
+        <div class='note'>* 공급가액을 입력하세요.</div>
+        <div class='result-wrapper'>
+          <div class='result-line'>
+            <div class='label'>합계금액</div>
+            <div class='value-box'>
+              <span class='value' id='totalResult'>-</span><span class='unit'>원</span>
+            </div>
+          </div>
+          <div class='result-line'>
+            <div class='label'>부가세</div>
+            <div class='value-box'>
+              <span class='value' id='vatSupplyResult'>-</span><span class='unit'>원</span>
+            </div>
+          </div>
+        </div>
+        <div class='reset-button'>
+          <button id='resetSupplyButton'>초기화</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id='footer-placeholder'></div>
+
+  <script src='/assets/js/main.js' defer></script>
+  <script>
+    // 엔터키로도 계산
+    function addEnterKey(input, btn) {
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); btn.click(); }
+      });
+    }
+
+    const totalInput = document.getElementById('totalInput');
+    const calcTotal  = document.getElementById('calculateTotalButton');
+    const resetTotal = document.getElementById('resetTotalButton');
+    const supplyRes  = document.getElementById('supplyResult');
+    const vatRes     = document.getElementById('vatResult');
+
+    addEnterKey(totalInput, calcTotal);
+    calcTotal.addEventListener('click', () => {
+      const v = parseFloat(totalInput.value.replace(/,/g,'')) || 0;
+      if (v > 0) {
+        const s = Math.round(v/1.1), t = v - s;
+        supplyRes.textContent = s.toLocaleString();
+        vatRes.textContent    = t.toLocaleString();
+      }
+    });
+    resetTotal.addEventListener('click', () => {
+      totalInput.value = ''; supplyRes.textContent = '-'; vatRes.textContent = '-';
+    });
+
+    const supplyInput = document.getElementById('supplyInput');
+    const calcSupply  = document.getElementById('calculateSupplyButton');
+    const resetSupply = document.getElementById('resetSupplyButton');
+    const totalRes    = document.getElementById('totalResult');
+    const vatSupply   = document.getElementById('vatSupplyResult');
+
+    addEnterKey(supplyInput, calcSupply);
+    calcSupply.addEventListener('click', () => {
+      const v = parseFloat(supplyInput.value.replace(/,/g,'')) || 0;
+      if (v > 0) {
+        const t = Math.round(v*1.1), u = t - v;
+        totalRes.textContent  = t.toLocaleString();
+        vatSupply.textContent = u.toLocaleString();
+      }
+    });
+    resetSupply.addEventListener('click', () => {
+      supplyInput.value = ''; totalRes.textContent = '-'; vatSupply.textContent = '-';        });
+  </script>
+</body>
+</html>

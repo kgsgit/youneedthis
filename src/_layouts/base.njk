@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+  {% include "header.html" %}
+  <main>
+    {% include "ads-slot.html" %}
+    {{ content | safe }}
+  </main>
+  {% include "footer.html" %}
+  <script src="/assets/js/main.js" defer></script>
+  {% if "convert" in page.url %}
+    <script src="/assets/js/convert.js" defer></script>
+  {% endif %}
+  {% if "exchange" in page.url %}
+    <script src="/assets/js/exchange.js" defer></script>
+  {% endif %}
+  {% if "ip" in page.url %}
+    <script src="/assets/js/ip.js" defer></script>
+  {% endif %}
+</body>
+</html>
