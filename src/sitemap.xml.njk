@@ -6,10 +6,10 @@ layout: null
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for page in collections.all %}
   {% if page.data.permalink %}
-<url>
-  <loc>{{ "https://youneedthis.kr" }}{{ page.url }}</loc>
-  <lastmod>{{ page.date.toISOString().slice(0,10) }}</lastmod>
-</url>
+    <url>
+      <loc>https://youneedthis.kr{{ page.url }}</loc>
+      <lastmod>{{ page.date.toISOString().slice(0,10) }}</lastmod>
+    </url>
   {% endif %}
 {% endfor %}
 </urlset>
