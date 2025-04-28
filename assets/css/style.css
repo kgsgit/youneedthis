@@ -435,4 +435,28 @@ footer {
     margin: 0 auto;
   }
 }
+
+
 }
+
+/* 추가 설명 섹션 스타일 */
+.extra-description {
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.extra-description h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #004080;
+}
+
+.extra-description p {
+  font-size: 1rem;
+  color: #333;
+}
+
