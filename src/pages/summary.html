@@ -1,0 +1,74 @@
+---
+layout: base.njk
+title: "AI 텍스트 요약기 | YouNeedThis"
+description: "긴 글을 5문장으로 빠르게 요약해 드립니다."
+permalink: "/pages/summary.html"
+---
+<style>
+.sum-card{max-width:700px;margin:40px auto;padding:26px 20px;border:1px solid #dde3ea;border-radius:8px;background:#fff;}
+.sum-card textarea{width:100%;height:180px;padding:14px;font-size:1rem;border:1px solid #ccc;border-radius:6px;resize:vertical;}
+.sum-card button{margin-top:12px;background:#0074D9;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;cursor:pointer;}
+.sum-card button:hover{background:#005fa3;}
+.sum-result{margin-top:22px;padding:14px;background:#f0f4f8;border-radius:6px;white-space:pre-wrap;line-height:1.6;}
+</style>
+
+<main>
+  <section class="vat-header">
+    <h1>AI 텍스트 요약기</h1>
+    <p>긴 글·기사·리포트를 <strong>5문장&nbsp;핵심</strong>으로 즉시 압축!</p>
+  </section>
+
+  <div id="ads-placeholder"></div>
+
+  <section class="sum-card">
+    <textarea id="src" placeholder="여기에 텍스트를 붙여넣거나 직접 입력하세요"></textarea>
+    <button id="go">요약하기</button>
+    <div id="out" class="sum-result" style="display:none;"></div>
+  </section>
+</main>
+
+<script>
+    /* 경량 추출-요약기 v2 — 공백·줄바꿈·한글마침표까지 지원 */
+    const STOP = new Set("이 그 저 것 그리고 그러나 또는 은 는 이다 있다 없다".split(" "));
+    
+    function sentenceSplit(t){
+      // ① 줄바꿈 → 공백, ② ‘.’ ‘?’ ‘!’ ‘…’ ‘요.’ ‘다.’ 등 뒤에서 분리
+      return t
+        .replace(/\s+/g," ")                       // 다중 공백
+        .split(/(?<=[\.\?!。]|요\.|다\.)\s+/u)      // 마침표 패턴
+        .filter(s=>s.trim().length>10);            // 너무 짧은 문장 제외
+    }
+    
+    function wordTokens(s){
+      return s
+        .toLowerCase()
+        .replace(/[^\\p{L}0-9 ]/gu,"")             // 특수문자 제거
+        .split(" ")
+        .filter(w=>w && !STOP.has(w));
+    }
+    
+    function summarize(text, n=5){
+      const sents = sentenceSplit(text);
+      if (sents.length <= n) return sents.join(" "); // 문장이 5개 이하면 원본
+      const freq = {};
+      sents.forEach(s=>wordTokens(s).forEach(w=>freq[w]=(freq[w]||0)+1));
+      const scored = sents.map((s,i)=>({
+        idx:i,
+        sent:s.trim(),
+        score:wordTokens(s).reduce((a,w)=>a+freq[w],0)
+      }));
+      return scored
+        .sort((a,b)=>b.score-a.score)   // 점수 내림차순
+        .slice(0,n)                     // 상위 n개
+        .sort((a,b)=>a.idx-b.idx)       // 원래 순서
+        .map(o=>o.sent).join(" ");
+    }
+    
+    document.getElementById("go").onclick = ()=>{
+      const txt = document.getElementById("src").value.trim();
+      if(!txt){ alert("먼저 텍스트를 입력하세요"); return; }
+      const out = document.getElementById("out");
+      out.textContent = summarize(txt) || "요약할 내용이 부족합니다.";
+      out.style.display="block";
+    };
+    </script>

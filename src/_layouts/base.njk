@@ -6,6 +6,9 @@
   <title>{{ title }}</title>
   <meta name="description" content="{{ description }}">
   <link rel="stylesheet" href="/assets/css/style.css" />
+  {% if "ip" in page.url %}
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  {% endif %}
 </head>
 <body>
   {% include "header.html" %}
@@ -15,6 +18,9 @@
   </main>
   {% include "footer.html" %}
   <script src="/assets/js/main.js" defer></script>
+  {% if "ip" in page.url %}
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" defer></script>
+  {% endif %}
   {% if "vat" in page.url %}
     <script src="/assets/js/vat.js" defer></script>
   {% endif %}
