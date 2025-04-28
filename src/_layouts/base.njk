@@ -15,6 +15,9 @@
   </main>
   {% include "footer.html" %}
   <script src="/assets/js/main.js" defer></script>
+  {% if "vat" in page.url %}
+    <script src="/assets/js/vat.js" defer></script>
+  {% endif %}
   {% if "convert" in page.url %}
     <script src="/assets/js/convert.js" defer></script>
   {% endif %}
