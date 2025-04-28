@@ -4,63 +4,48 @@ title: "IP 추적기 | YouNeedThis"
 description: "빠른 IP 추적 도구"
 permalink: "/pages/ip.html"
 ---
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>빠른 IP 추적기 | YouNeedThis</title>
-  <link rel="stylesheet" href="/assets/css/style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-</head>
-<body>
-  <div id="header-placeholder"></div>
-  <main style="display:flex; flex-direction:column; align-items:center; padding:20px;">
-    <section class="vat-header" style="max-width:600px; text-align:center; margin-bottom:16px;">
-      <h1>빠른 IP 추적기</h1>
-      <p>IP 주소로 위치, 통신사, 기기 종류를 즉시 확인하세요.</p>
-    </section>
-    <div id="ads-placeholder" style="width:100%; max-width:600px; margin-bottom:32px;"></div>
-    <section class="calculator" style="width:100%; max-width:600px;">
-      <p class="ip-note" style="font-size:14px; color:#555; margin-bottom:16px;">
-        표시되는 위치 정보는 IP 기지국 기반의 대략적인 위치입니다. 실제 위치와 차이가 있을 수 있으니 참고용으로만 활용해 주세요.
-      </p>
-      <div class="lookup-section" style="margin-bottom:32px;">
-        <input id="ipInput" type="text" placeholder="IP 주소 입력 (빈칸은 내 IP 조회)"
-               style="width:100%; padding:16px; font-size:16px; border:1px solid #ccc; border-radius:4px; margin-bottom:20px;" />
-        <div class="lookup-buttons" style="gap:12px; display:flex; justify-content:center;">
-          <button id="btnLookup" style="padding:10px 20px; border:none; background:#0074D9; color:#fff; border-radius:4px; cursor:pointer;">조회</button>
-          <button id="btnMyIP" style="padding:10px 20px; border:none; background:#0074D9; color:#fff; border-radius:4px; cursor:pointer;">내 IP</button>
-        </div>
+<main style="display:flex; flex-direction:column; align-items:center; padding:20px;">
+  <section class="vat-header" style="max-width:600px; text-align:center; margin-bottom:16px;">
+    <h1>빠른 IP 추적기</h1>
+    <p>IP 주소로 위치, 통신사, 기기 종류를 즉시 확인하세요.</p>
+  </section>
+
+  <div id="ads-placeholder" style="width:100%; max-width:600px; margin-bottom:32px;"></div>
+
+  <section class="calculator" style="width:100%; max-width:600px;">
+    <p class="ip-note" style="font-size:14px; color:#555; margin-bottom:16px;">
+      표시되는 위치 정보는 IP 기지국 기반의 대략적인 위치입니다. 실제 위치와 차이가 있을 수 있으니 참고용으로만 활용해 주세요.
+    </p>
+    <div class="lookup-section" style="margin-bottom:32px;">
+      <input id="ipInput" type="text" placeholder="IP 주소 입력 (빈칸은 내 IP 조회)"
+             style="width:100%; padding:16px; font-size:16px; border:1px solid #ccc; border-radius:4px; margin-bottom:20px;" />
+      <div class="lookup-buttons" style="gap:12px; display:flex; justify-content:center;">
+        <button id="btnLookup" style="padding:10px 20px; border:none; background:#0074D9; color:#fff; border-radius:4px; cursor:pointer;">조회</button>
+        <button id="btnMyIP" style="padding:10px 20px; border:none; background:#0074D9; color:#fff; border-radius:4px; cursor:pointer;">내 IP</button>
       </div>
-      <div id="infoBox" style="display:none; padding:20px; background:#e8f5ff; border-radius:8px; width:100%; box-sizing:border-box;">
-        <div style="background:#fff; padding:14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-          <span style="font-weight:bold; color:#003366;">IP 주소:</span>
-          <span id="ipAddr">-</span>
-        </div>
-        <div style="background:#fff; padding:14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-          <span style="font-weight:bold; color:#003366;">위치:</span>
-          <span id="location">-</span>
-        </div>
-        <div style="background:#fff; padding:14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-          <span style="font-weight:bold; color:#003366;">ISP:</span>
-          <span id="isp">-</span>
-        </div>
-        <div style="background:#fff; padding:14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-          <span style="font-weight:bold; color:#003366;">좌표:</span>
-          <span id="coords">-</span>
-        </div>
-        <div style="background:#fff; padding:14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
-          <span style="font-weight:bold; color:#003366;">기기 종류:</span>
-          <span id="device">-</span>
-        </div>
+    </div>
+    <div id="infoBox" style="display:none; padding:20px; background:#e8f5ff; border-radius:8px; width:100%; box-sizing:border-box;">
+      <div style="background:#fff; padding:14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <span style="font-weight:bold; color:#003366;">IP 주소:</span>
+        <span id="ipAddr">-</span>
       </div>
-    </section>
+      <div style="background:#fff; padding:14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <span style="font-weight:bold; color:#003366;">위치:</span>
+        <span id="location">-</span>
+      </div>
+      <div style="background:#fff; padding:14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <span style="font-weight:bold; color:#003366;">ISP:</span>
+        <span id="isp">-</span>
+      </div>
+      <div style="background:#fff; padding:14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <span style="font-weight:bold; color:#003366;">좌표:</span>
+        <span id="coords">-</span>
+      </div>
+      <div style="background:#fff; padding:14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-weight:bold; color:#003366;">기기 종류:</span>
+        <span id="device">-</span>
+      </div>
+    </div>
     <div id="map" style="width:100%; max-width:600px; margin-top:20px; height:300px;"></div>
-  </main>
-  <div id="footer-placeholder"></div>
-  <script src="/assets/js/main.js" defer></script>
-  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" defer></script>
-  <script src="/assets/js/ip.js" defer></script>
-</body>
-</html>
+  </section>
+</main>
