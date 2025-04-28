@@ -1,84 +1,74 @@
+// assets/js/exchange.js
 document.addEventListener('DOMContentLoaded', () => {
-  const amountInput   = document.getElementById('amount');
-  const fromSelect    = document.getElementById('from-currency');
-  const toSelect      = document.getElementById('to-currency');
-  const convertButton = document.getElementById('convert');
-  const swapButton    = document.getElementById('swap');
-  const loadingDiv    = document.getElementById('loading');
-  const resultDiv     = document.getElementById('result');
+  const API = 'https://api.exchangerate.host';
+  const proxyUrl = url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+  const fromSelect = document.getElementById('from-currency');
+  const toSelect   = document.getElementById('to-currency');
+  const fromAmt    = document.getElementById('from-amount');
+  const toAmt      = document.getElementById('to-amount');
+  const toUnit     = document.getElementById('to-unit');
+  const flagFrom   = document.getElementById('flag-from');
+  const flagTo     = document.getElementById('flag-to');
 
-  amountInput.addEventListener('input', () => {
-    let v = amountInput.value.replace(/,/g, '');
-    if (!isNaN(v) && v !== '') {
-      amountInput.value = Number(v).toLocaleString();
-    }
-  });
+  const flagURL = code => `https://flagcdn.com/${code.toLowerCase()}.svg`;
 
-  amountInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      convertCurrency();
-    }
-  });
-
-  async function fetchWithProxy(url) {
-    const proxy = 'https://api.allorigins.win/raw?url=';
-    return fetch(proxy + encodeURIComponent(url))
-      .then(res => {
-        if (!res.ok) throw new Error('Proxy error: ' + res.status);
-        return res.json();
-      });
+  async function fetchJSON(url) {
+    const res = await fetch(proxyUrl(url));
+    if (!res.ok) throw new Error(res.statusText);
+    return res.json();
   }
 
-  async function loadCurrencies() {
+  async function loadSymbols() {
     try {
-      const data = await fetchWithProxy('https://api.exchangerate.host/symbols');
-      const symbols = data.symbols;
-      fromSelect.innerHTML = '';
-      toSelect.innerHTML   = '';
-      for (const code of Object.keys(symbols)) {
-        const desc = symbols[code].description;
-        fromSelect.add(new Option(`${code} — ${desc}`, code));
-        toSelect.add(new Option(`${code} — ${desc}`, code));
+      const data = await fetchJSON(`${API}/symbols`);
+      for (const [code, { description }] of Object.entries(data.symbols)) {
+        fromSelect.add(new Option(`${description} (${code})`, code));
+        toSelect.add(new Option(`${description} (${code})`, code));
       }
       fromSelect.value = 'USD';
       toSelect.value   = 'KRW';
-    } catch (err) {
-      console.error('Load currencies failed:', err);
-      resultDiv.textContent = '통화 목록 불러오기 실패';
+      flagFrom.src     = flagURL('US');
+      flagTo.src       = flagURL('KR');
+      calculate();
+    } catch (e) {
+      console.error(e);
+      toAmt.textContent = '로드 실패';
+      toUnit.textContent = '';
     }
   }
 
-  swapButton.addEventListener('click', () => {
-    [fromSelect.value, toSelect.value] = [toSelect.value, fromSelect.value];
-  });
-
-  async function convertCurrency() {
-    const raw    = amountInput.value.replace(/,/g, '');
-    const amount = parseFloat(raw);
-    if (isNaN(amount) || amount <= 0) {
-      alert('올바른 금액을 입력하세요.');
+  async function calculate() {
+    const from = fromSelect.value;
+    const to   = toSelect.value;
+    const amt  = parseFloat(fromAmt.value) || 0;
+    if (amt <= 0) {
+      toAmt.textContent = '-';
+      toUnit.textContent = '';
       return;
     }
-    loadingDiv.style.display = 'block';
-    resultDiv.textContent    = '';
+    toAmt.textContent = '⏳';
     try {
-      const data = await fetchWithProxy(`https://api.exchangerate.host/convert?from=${fromSelect.value}&to=${toSelect.value}&amount=${amount}`);
-      if (data.result != null) {
-        const formatted = Number(data.result).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        resultDiv.textContent = `${amount.toLocaleString()} ${fromSelect.value} → ${formatted} ${toSelect.value}`;
-      } else {
-        throw new Error('No result');
-      }
-    } catch (err) {
-      console.error('Convert currency failed:', err);
-      resultDiv.textContent = '변환 실패. 네트워크를 확인하세요.';
-    } finally {
-      loadingDiv.style.display = 'none';
+      const data = await fetchJSON(`${API}/convert?from=${from}&to=${to}&amount=${amt}`);
+      if (data.result == null) throw new Error('No result');
+      const formatted = Number(data.result).toLocaleString(undefined, { maximumFractionDigits: 2 });
+      toAmt.textContent = formatted;
+      toUnit.textContent = to;
+    } catch (e) {
+      console.error(e);
+      toAmt.textContent = '오류';
+      toUnit.textContent = '';
     }
   }
 
-  convertButton.addEventListener('click', convertCurrency);
+  fromSelect.addEventListener('change', () => {
+    flagFrom.src = flagURL(fromSelect.value.slice(0, 2));
+    calculate();
+  });
+  toSelect.addEventListener('change', () => {
+    flagTo.src = flagURL(toSelect.value.slice(0, 2));
+    calculate();
+  });
+  fromAmt.addEventListener('input', calculate);
 
-  loadCurrencies();
+  loadSymbols();
 });

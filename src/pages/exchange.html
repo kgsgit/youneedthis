@@ -1,25 +1,101 @@
 ---
 layout: base.njk
 title: "환율 계산기 | YouNeedThis"
-description: "실시간 환율 기반 변환 도구"
+description: "네이버 환율 검색처럼 실시간 환율 계산"
 permalink: "/pages/exchange.html"
 ---
+<style>
+/* 페이지 전용 스타일 */
+.ex-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 26px 20px;
+  border: 1px solid #dde3ea;
+  border-radius: 8px;
+  background: #fff;
+}
+.ex-header {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.ex-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.ex-flag {
+  width: 32px;
+  height: 20px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+.ex-select { flex: 1; }
+.ex-select select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.ex-input {
+  width: 100px;
+  padding: 10px;
+  font-size: 1rem;
+  text-align: right;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.ex-equal {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin: 10px 0;
+}
+.ex-result {
+  text-align: right;
+}
+.ex-result-value {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+.ex-result-unit {
+  margin-left: 6px;
+  font-size: 1rem;
+  color: #555;
+}
+@media (max-width: 500px) {
+  .ex-input { width: 80px; }
+}
+</style>
+
 <main>
-  <section class="exchange-converter" style="max-width:600px; margin:40px auto;">
-    <div style="border:1px solid #ddd; border-radius:8px; padding:20px;">
-      <h2 style="font-size:1.5rem; margin-bottom:16px; color:#003366;">환율 계산</h2>
-      <div style="display:flex; gap:10px; margin-bottom:20px;">
-        <select id="from-currency" style="flex:1; padding:12px; border:1px solid #ccc; border-radius:4px;"></select>
-        <button id="swap" style="background:#0074D9; color:#fff; border:none; padding:0 16px; border-radius:4px; cursor:pointer;">⇄</button>
-        <select id="to-currency" style="flex:1; padding:12px; border:1px solid #ccc; border-radius:4px;"></select>
-      </div>
-      <div style="display:flex; align-items:center; margin-bottom:20px;">
-        <input id="amount" type="text" placeholder="금액을 입력하세요"
-               style="flex:1; padding:12px; font-size:1rem; border:1px solid #ccc; border-radius:4px; margin-right:10px;" />
-        <button id="convert" style="background:#0074D9; color:#fff; border:none; padding:12px 20px; border-radius:4px; cursor:pointer;">변환하기</button>
-      </div>
-      <div id="loading" style="display:none; text-align:center; color:#999;">⏳ 변환 중...</div>
-      <div id="result" style="margin-top:20px; text-align:center; font-size:1.2rem; font-weight:bold;"></div>
+  <div class="ex-container">
+    <div class="ex-header">환율 계산</div>
+
+    <!-- From -->
+    <div class="ex-row">
+      <img id="flag-from" class="ex-flag" src="https://flagcdn.com/us.svg" alt="🇺🇸"/>
+      <div class="ex-select"><select id="from-currency"></select></div>
+      <input id="from-amount" class="ex-input" type="number" step="any" value="1" min="0"/>
     </div>
-  </section>
+
+    <div class="ex-equal">＝</div>
+
+    <!-- To -->
+    <div class="ex-row">
+      <img id="flag-to" class="ex-flag" src="https://flagcdn.com/kr.svg" alt="🇰🇷"/>
+      <div class="ex-select"><select id="to-currency"></select></div>
+      <div class="ex-result">
+        <span id="to-amount" class="ex-result-value">-</span>
+        <span id="to-unit" class="ex-result-unit">-</span>
+      </div>
+    </div>
+  </div>
 </main>
+
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/exchange.js" defer></script>
