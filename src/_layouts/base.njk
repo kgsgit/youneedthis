@@ -2,13 +2,21 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ title }}</title>
-  <meta name="description" content="{{ description }}">
+  <meta name="description" content="{{ description }}" />
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8YX9WZEMJ1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-G-8YX9WZEMJ1', {
+      page_path: window.location.pathname,
+    });
+  </script>
+  <!-- 스타일·스크립트 로드 -->
   <link rel="stylesheet" href="/assets/css/style.css" />
-  {% if "ip" in page.url %}
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-  {% endif %}
+  <script src="/assets/js/main.js" defer></script>
 </head>
 <body>
   {% include "header.html" %}
