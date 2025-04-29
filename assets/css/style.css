@@ -460,3 +460,33 @@ footer {
   color: #333;
 }
 
+/* ── 요약기(sum-card) 스타일 복원 ── */
+.sum-card {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  padding: 26px 20px;
+  border: 1px solid #dde3ea;
+  border-radius: 8px;
+  background: #fff;
+}
+.sum-card textarea {
+  width: 100%;
+  height: 180px;
+  padding: 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+}
+.sum-card button {
+  display: block;
+  margin: 10px auto 0;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+#outputText {
+  margin-top: 20px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
