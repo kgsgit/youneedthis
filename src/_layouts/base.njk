@@ -14,10 +14,10 @@
   {% include "header.html" %}
    {#— homepage-only banner —#}
   {% if page.url == "/" %}
-    {% include "ads-slot.html" %}
+   
   {% endif %}
   <main>
-   
+    {% include "ads-slot.html" %}
     {{ content | safe }}
   </main>
   {% include "footer.html" %}
