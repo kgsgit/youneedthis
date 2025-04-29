@@ -1,50 +1,69 @@
-// assets/js/summary.js
-document.addEventListener('DOMContentLoaded', () => {
-    const btn    = document.getElementById('go');
-    const src    = document.getElementById('src');
-    const out    = document.getElementById('out');
-  
-    btn.addEventListener('click', async () => {
-      const text = src.value.trim();
-      if (!text) {
-        alert('요약할 텍스트를 입력하세요.');
-        return;
-      }
-      btn.disabled = true;
-      btn.textContent = '요약 중…';
-  
-      try {
-        // OpenAI ChatCompletion API 호출
-        const res = await fetch('/api/openai', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            model: 'gpt-3.5-turbo',
-            messages: [
-              { role: 'system', content: '다음 글을 최대 5문장으로 간결하게 요약해줘.' },
-              { role: 'user', content: text }
-            ],
-            max_tokens: 300,
-            temperature: 0.5
-          })
-        });
-        const { choices } = await res.json();
-        const summary = choices?.[0]?.message?.content?.trim() || '요약 오류가 발생했습니다.';
-        
-        // 문장별로 <p> 태그 래핑
-        out.innerHTML = summary
-          .split(/\n+/)
-          .filter(s => s.trim())
-          .map(s => `<p>${s.trim()}</p>`)
-          .join('');
-        out.style.display = 'block';
-      } catch (e) {
-        console.error(e);
-        alert('요약 중 오류가 발생했습니다.');
-      } finally {
-        btn.disabled = false;
-        btn.textContent = '요약하기';
+// 불용어(간단한 한국어/영어 혼합)
+const STOP_WORDS = [
+  "이", "그", "저", "의", "가", "을", "를", "는", "도", "에", "으로", "에서",
+  "the", "and", "is", "in", "at", "of", "to", "a", "for", "on", "that", "this"
+];
+
+// 문장 단위로 잘라내기
+function splitSentences(text) {
+  return text.match(/[^\.!\?]+[\.!\?]+/g) || [text];
+}
+
+// 단어 빈도 계산
+function computeWordFreq(text) {
+  const freq = {};
+  text
+    .toLowerCase()
+    .replace(/[\r\n]+/g, " ")
+    .split(/[\s\.,!?;:"'()]+/)
+    .forEach(word => {
+      if (word && !STOP_WORDS.includes(word)) {
+        freq[word] = (freq[word] || 0) + 1;
       }
     });
+  return freq;
+}
+
+// 요약: 상위 N개 문장 선택
+function summarizeText(text, maxSentences = 5) {
+  const sentences = splitSentences(text);
+  const wordFreq = computeWordFreq(text);
+
+  const scored = sentences.map(s => {
+    const words = s
+      .toLowerCase()
+      .replace(/[\r\n]+/g, " ")
+      .split(/[\s\.,!?;:"'()]+/);
+    let score = 0;
+    words.forEach(w => {
+      if (wordFreq[w]) score += wordFreq[w];
+    });
+    return { sentence: s.trim(), score };
   });
-  
+
+  // 점수 내림차순 정렬 후 상위 maxSentences 선택
+  const selected = scored
+    .sort((a, b) => b.score - a.score)
+    .slice(0, maxSentences)
+    .map(item => item.sentence);
+
+  return selected.join(" ");
+}
+
+
+// 버튼 클릭 이벤트
+document.getElementById("summarizeBtn").addEventListener("click", () => {
+  const input = document.getElementById("inputText").value.trim();
+  const output = document.getElementById("outputText");
+
+  if (!input) {
+    output.innerText = "요약할 텍스트를 입력해주세요.";
+    return;
+  }
+
+  output.innerText = "요약 중…";
+  setTimeout(() => {
+    const result = summarizeText(input, 5);
+    output.innerText = result || "요약할 수 있는 내용이 부족합니다.";
+  }, 100);  // 잠깐 대기
+});
