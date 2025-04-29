@@ -494,3 +494,19 @@ footer {
   margin: 0 0 12px;
   color: #444;
 }
+
+/* 모바일에서만 줄바꿈 활성화 */
+.mobile-break {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-break {
+    display: inline;
+  }
+
+  .headline-mobile {
+    text-align: center;
+    line-height: 1.4;
+    word-break: keep-word;
+  }
