@@ -1,48 +1,124 @@
 ---
 layout: base.njk
-title: "이름 영문 변환기 | YouNeedThis"
-description: "한국어 이름을 공식 로마자 표기법에 맞게 변환합니다. 대한민국 로마자 표기 기준 적용."
+title: "정확한 한글 이름 로마자 변환기 | YouNeedThis"
+description: "한국어 이름을 입력하면 공식 로마자 표기법과 관습 표기법에 따라 정확한 영문 이름을 변환해 드립니다. 여권, 출입국 서류 등에 활용하세요."
 permalink: "/pages/convert.html"
 ---
 <main>
-  <section class='vat-header'>
+  <!-- 상단 헤더 -->
+  <section class="vat-header">
     <h1>정확한 한글 이름 로마자 변환기</h1>
-    <p>공식 로마자 + 관습 표기 모두 제공합니다.</p>
+    <p>국립국어원 표기법 기준 공식 표기와 국내 관습 표기를 모두 제공합니다.</p>
   </section>
 
-  <div id='ads-placeholder'></div>
+  <!-- 광고 슬롯 -->
+  <div id="ads-placeholder"></div>
 
-  <section class='vat-calculators'>
-    <div class='calculator'>
-      <div class='info-label'>한글 이름 입력</div>
-      <div class='input-group'>
-        <input type='text' id='koreanNameInput' placeholder='예: 홍길동' />
-        <button id='convertButton'>변환하기</button>
+  <!-- 변환기 UI -->
+  <section class="vat-calculators">
+    <div class="calculator" style="max-width:500px;margin:0 auto;">
+      <div class="info-label">한글 이름 입력</div>
+      <div class="input-group">
+        <input type="text" id="koreanNameInput" placeholder="예: 홍길동" />
+        <button id="convertButton">변환하기</button>
       </div>
-      <div class='note'>* 한글 이름 입력 후 변환 버튼을 누르거나 엔터 키를 누르세요.</div>
-      <div class='result-wrapper' id='resultWrapper' style='display:none;'>
-        <div class='result-line'>
-          <div class='label'>관습 표기</div>
-          <div class='value-box'><span class='value' id='commonResult'>-</span></div>
+      <div class="note">* 한글만 입력 가능. 변환 후 복사 아이콘으로 결과를 복사하세요.</div>
+      <div id="resultWrapper" class="result-wrapper" style="display:none; flex-direction:column; gap:12px;">
+        <div class="result-line">
+          <div class="label">관습 표기</div>
+          <div class="value-box"><span class="value" id="commonResult">-</span></div>
         </div>
-        <div class='result-line'>
-          <div class='label'>공식 표기</div>
-          <div class='value-box'><span class='value' id='officialResult'>-</span></div>
+        <div class="result-line">
+          <div class="label">공식 표기</div>
+          <div class="value-box"><span class="value" id="officialResult">-</span></div>
         </div>
-        <div class='reset-button'>
-          <button id='copyButton'>관습 표기 복사</button>
+        <div class="reset-button">
+          <button id="copyButton">관습 표기 복사</button>
         </div>
       </div>
     </div>
   </section>
-  <section class="extra-description">
-    <h2>한국어 이름 영문 변환 기준</h2>
+
+  <!-- 사용 가이드 · 사례 · 주의사항 -->
+  <section class="extra-description" style="max-width:700px;margin:40px auto;">
+    <h2>사용 가이드</h2>
     <p>
-      본 서비스는 국립국어원 '로마자 표기법'을 기준으로 이름을 변환합니다.<br>
-      예: <strong>홍길동 ➔ Hong Gil-dong</strong><br>
-      공식 문서, 여권, 유학 서류 작성 시 활용할 수 있습니다.
+      이 변환기는 국립국어원 ‘로마자 표기법’을 기준으로 한 공식 표기와, 한국에서 널리 쓰이는 관습 표기를 동시에 제공합니다.
+      입력란에 온전한 한글 이름(성+이름)을 작성한 뒤 <strong>변환하기</strong> 버튼을 누르거나 Enter 키를 눌러주세요.
+      결과는 즉시 하단에 표시되며, ‘관습 표기 복사’ 버튼을 눌러 클립보드에 복사할 수 있습니다.
     </p>
+    <h3>사례</h3>
+    <p>
+      • <strong>홍길동</strong> → 관습: Hong Gil-dong, 공식: Hong Gil-dong<br/>
+      • <strong>박지성</strong> → 관습: Park Ji-seong, 공식: Bak Ji-seong<br/>
+      • <strong>이영희</strong> → 관습: Lee Young-hee, 공식: I Yeong-hui
+    </p>
+    <h3>주의사항</h3>
+    <ul style="padding-left:18px;">
+      <li>영문 이름에 숫자나 특수문자는 지원하지 않습니다.</li>
+      <li>다음 세대 로마자 표기법 업데이트 시 결과가 달라질 수 있습니다.</li>
+      <li>복수 이름 입력 시 첫 번째 이름만 변환됩니다.</li>
+    </ul>
   </section>
-  
+
+  <!-- 관련 도구 내부 링크 -->
+  <section style="max-width:700px;margin:40px auto;">
+    <h2>이 도구와 함께 쓰면 좋은 다른 도구</h2>
+    <ul>
+      <li><a href="/pages/vat.html">부가세 계산기</a> ← 세금 신고서 작성 시</li>
+      <li><a href="/pages/exchange.html">환율 계산기</a> ← 해외 송금 영문 이름 활용</li>
+      <li><a href="/pages/summary.html">간편요약기</a> ← 영문 문서 요약 시</li>
+    </ul>
+  </section>
+
+  <!-- FAQ -->
+  <section style="max-width:700px;margin:40px auto;">
+    <h2>자주 묻는 질문(FAQ)</h2>
+    <div itemscope itemtype="https://schema.org/FAQPage">
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Q1. 외국어 이름(한자·영어)도 변환 가능한가요?</h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">한글 이름만 변환을 지원하며, 한자나 영어 입력은 인식되지 않습니다.</p>
+        </div>
+      </div>
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Q2. 공식 표기와 관습 표기가 같은 경우도 있나요?</h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">네. 예를 들어 ‘홍길동’은 공식·관습 모두 동일하게 ‘Hong Gil-dong’으로 표시됩니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
+<!-- JSON-LD 구조화 데이터 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.youneedthis.kr/" },
+    { "@type": "ListItem", "position": 2, "name": "이름 변환기", "item": "https://www.youneedthis.kr/pages/convert.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "외국어 이름(한자·영어)도 변환 가능한가요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "한글 이름만 변환을 지원하며, 한자나 영어 입력은 인식되지 않습니다." }
+    },
+    {
+      "@type": "Question",
+      "name": "공식 표기와 관습 표기가 같은 경우도 있나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "예. ‘홍길동’은 공식·관습 모두 ‘Hong Gil-dong’으로 표시됩니다." }
+    }
+  ]
+}
+</script>
+
+<script src="/assets/js/convert.js" defer></script>

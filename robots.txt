@@ -1,3 +1,6 @@
+# robots.txt
 User-agent: *
-Allow: /
-Sitemap: https://youneedthis.kr/sitemap.xml
+Disallow:
+
+# Sitemap 위치
+Sitemap: https://www.youneedthis.kr/sitemap.xml
