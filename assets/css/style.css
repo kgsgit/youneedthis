@@ -510,3 +510,28 @@ footer {
     line-height: 1.4;
     word-break: keep-word;
   }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  
+  .faq-item {
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .faq-item h3 {
+    font-size: 1.1rem;
+    color: #003366;
+    margin-bottom: 8px;
+  }
+  
+  .faq-item p {
+    margin: 0;
+    color: #444;
+  }
