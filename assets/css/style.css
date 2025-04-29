@@ -461,3 +461,36 @@ footer {
   white-space: pre-wrap;
   line-height: 1.5;
 }
+
+.section-footer {
+  max-width: 800px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.section-footer h2 {
+  font-size: 1.25rem;
+  margin-bottom: 14px;
+  color: #003366;
+}
+
+.section-footer ul {
+  padding-left: 20px;
+  margin-bottom: 28px;
+}
+
+.section-footer li {
+  margin-bottom: 6px;
+}
+
+.section-footer .faq-block h3 {
+  font-size: 1.05rem;
+  margin: 14px 0 6px;
+}
+
+.section-footer .faq-block p {
+  margin: 0 0 12px;
+  color: #444;
+}
