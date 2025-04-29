@@ -460,23 +460,3 @@ footer {
   color: #333;
 }
 
-.sum-card {
-  max-width: 700px; margin: 40px auto; padding: 20px; background: #fff;
-  border: 1px solid #dde3ea; border-radius: 8px;
-}
-.sum-card textarea {
-  width: 100%; height: 200px; padding: 12px; margin-bottom: 12px;
-  border:1px solid #ccc; border-radius:6px; font-size: 1rem;
-}
-.sum-card button {
-  display: block; margin: 0 auto 20px; padding: 12px 24px;
-  background: #0074D9; color:#fff; border:none; border-radius:6px;
-  cursor:pointer; font-size:1rem;
-}
-.sum-result {
-  display: none; padding: 16px; background: #f0f4f8;
-  border-radius: 6px; line-height:1.6; font-size:1rem;
-}
-.sum-result p {
-  margin-bottom: 1em; /* 문단간 여백 */
-}
