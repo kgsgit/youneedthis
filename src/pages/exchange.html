@@ -35,6 +35,54 @@ permalink: "/pages/exchange.html"
   </form>
   <div id="result"></div>
 </div>
+<!-- 사용 가이드 · 사례 · 주의사항 -->
+<section class="extra-description" style="max-width:700px;margin:40px auto;">
+  <h2>사용 가이드</h2>
+  <p>
+    이 환율 계산기는 신뢰할 수 있는 공개 API에서 제공하는 실시간 시장 환율 데이터를 사용합니다. 보내실 통화와 받으실 통화를 선택하고, 금액을 입력한 후 <strong>변환하기</strong> 버튼을 클릭하세요. 즉시 환산된 금액이 아래에 표시됩니다.
+  </p>
+  <h3>사례</h3>
+  <p>
+    예) 100 USD → KRW 변환 → 100 USD = 123,456 KRW<br/>
+    예) 500 EUR → USD 변환 → 500 EUR = 547.89 USD
+  </p>
+  <h3>주의사항</h3>
+  <ul style="padding-left:18px;">
+    <li>API 응답 지연 시 오류가 발생할 수 있으니, 네트워크 상태를 확인하세요.</li>
+    <li>대량 거래 시 실제 은행 환율과 차이가 있을 수 있습니다.</li>
+    <li>소수점 둘째 자리까지 반올림되어 표시됩니다.</li>
+  </ul>
+</section>
+
+<!-- 관련 도구 내부 링크 -->
+<section style="max-width:700px;margin:40px auto;">
+  <h2>이 도구와 함께 쓰면 좋은 다른 도구</h2>
+  <ul>
+    <li><a href="/pages/vat.html">부가세 계산기</a> ← 해외 구매 시 세금 산정</li>
+    <li><a href="/pages/convert.html">이름 영문 변환기</a> ← 해외 서류 작성 시</li>
+    <li><a href="/pages/summary.html">간편요약기</a> ← 환율 뉴스 요약 시</li>
+  </ul>
+</section>
+
+<!-- 자주 묻는 질문(FAQ) -->
+<section style="max-width:700px;margin:40px auto;">
+  <h2>자주 묻는 질문(FAQ)</h2>
+  <div itemscope itemtype="https://schema.org/FAQPage">
+    <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+      <h3 itemprop="name">Q1. 환율 데이터는 얼마나 자주 업데이트되나요?</h3>
+      <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+        <p itemprop="text">API 제공사에 따라 다르지만, 대부분 1시간 이내 주기로 갱신됩니다.</p>
+      </div>
+    </div>
+    <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+      <h3 itemprop="name">Q2. 은행 환율과 다를 수 있나요?</h3>
+      <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+        <p itemprop="text">네. 은행 수수료 및 중개 마진이 적용되지 않은 순수 시장환율이므로 실제 은행 환율과 차이가 있을 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <style>
   .exchange-card {
