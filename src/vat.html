@@ -1,0 +1,154 @@
+---
+layout: base.njk
+title: "부가세 계산기 | YouNeedThis"
+description: "간편하게 합계금액 또는 공급가액을 입력해 10% 부가세와 총액/공급가액을 즉시 계산하세요. 신고 시기·방법·주의사항까지 한눈에 제공합니다."
+permalink: "/vat.html"
+---
+<main>
+  <!-- 상단 헤더 -->
+  <section class="vat-header">
+    <h1>쉽고 간편한 부가세 계산기</h1>
+    <p>합계금액 또는 공급가액을 입력하면 부가세와 나머지 금액을 자동 계산해 드립니다.</p>
+  </section>
+
+  <!-- 광고 자리 -->
+  <div id="ads-placeholder"></div>
+
+  <!-- 계산기 UI -->
+  <section class="vat-calculators">
+    <!-- 합계금액 기준 -->
+    <div class="calculator">
+      <div class="info-label">합계금액 기준 계산</div>
+      <div class="input-group">
+        <input type="number" id="totalInput" placeholder="합계금액 입력" />
+        <button id="calculateTotalButton">계산하기</button>
+      </div>
+      <div class="note">* 합계금액을 입력하고 버튼을 누르세요.</div>
+      <div class="result-wrapper">
+        <div class="result-line">
+          <div class="label">공급가액</div>
+          <div class="value-box">
+            <span class="value" id="supplyResult">-</span><span class="unit">원</span>
+          </div>
+        </div>
+        <div class="result-line">
+          <div class="label">부가세</div>
+          <div class="value-box">
+            <span class="value" id="vatResult">-</span><span class="unit">원</span>
+          </div>
+        </div>
+      </div>
+      <div class="reset-button">
+        <button id="resetTotalButton">초기화</button>
+      </div>
+    </div>
+    <!-- 공급가액 기준 -->
+    <div class="calculator">
+      <div class="info-label">공급가액 기준 계산</div>
+      <div class="input-group">
+        <input type="number" id="supplyInput" placeholder="공급가액 입력" />
+        <button id="calculateSupplyButton">계산하기</button>
+      </div>
+      <div class="note">* 공급가액을 입력하고 버튼을 누르세요.</div>
+      <div class="result-wrapper">
+        <div class="result-line">
+          <div class="label">합계금액</div>
+          <div class="value-box">
+            <span class="value" id="totalResult">-</span><span class="unit">원</span>
+          </div>
+        </div>
+        <div class="result-line">
+          <div class="label">부가세</div>
+          <div class="value-box">
+            <span class="value" id="vatSupplyResult">-</span><span class="unit">원</span>
+          </div>
+        </div>
+      </div>
+      <div class="reset-button">
+        <button id="resetSupplyButton">초기화</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 사용 가이드 · 사례 · 주의사항 -->
+  <section class="vat-info" style="max-width:700px;margin:40px auto;font-size:15px;line-height:1.7;">
+    <h2>부가세 계산기 사용 가이드</h2>
+    <p>
+      이 계산기는 국내 표준 부가가치세율 10%를 기준으로 빠르게 세금과 금액을 확인할 수 있도록 돕습니다.
+      개인사업자·법인 사업자 모두 이용 가능하며, 계산 결과는 홈택스 신고와 무관하므로
+      실제 신고 시에는 국세청 홈택스 결과를 최종 확인하시기 바랍니다.
+    </p>
+    <h3>사례</h3>
+    <p>
+      예) 550,000원 합계금액 입력 → 공급가액 500,000원, 부가세 50,000원 자동 계산.<br/>
+      예) 2,000,000원 공급가액 입력 → 합계금액 2,200,000원, 부가세 200,000원 표시.
+    </p>
+    <h3>주의사항</h3>
+    <ul style="padding-left:18px;">
+      <li>계산기는 참고용입니다. 신고 전 반드시 홈택스에서 확인하세요.</li>
+      <li>소수점 이하는 자동 반올림됩니다.</li>
+      <li>영수증·세금계산서 발급 기한을 놓치지 않도록 주의해주세요.</li>
+    </ul>
+  </section>
+
+  <!-- 관련 도구 내부 링크 -->
+  <section style="max-width:700px;margin:40px auto;">
+    <h2>이 도구와 함께 쓰면 좋은 다른 도구</h2>
+    <ul>
+      <li><a href="/pages/exchange.html">환율 계산기</a> ← 해외 구매 시 세금 산정</li>
+      <li><a href="/pages/convert.html">이름 영문 변환기</a> ← 세금 신고서 영문 이름 변환</li>
+      <li><a href="/pages/summary.html">간편요약기</a> ← 업무 문서 요약</li>
+    </ul>
+  </section>
+
+  <!-- 자주 묻는 질문(FAQ) -->
+  <section style="max-width:700px;margin:40px auto;">
+    <h2>자주 묻는 질문(FAQ)</h2>
+    <div itemscope itemtype="https://schema.org/FAQPage">
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Q1. 계산된 부가세는 소수점 어떻게 처리되나요?</h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">소수점 이하는 자동으로 반올림되어 정수 단위로 표시됩니다.</p>
+        </div>
+      </div>
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Q2. 이 계산기로 신고가 완료되나요?</h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">아니요. 참고용 도구로, 실제 신고는 국세청 홈택스를 이용해 주세요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- JSON-LD 구조화 데이터 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.youneedthis.kr/" },
+    { "@type": "ListItem", "position": 2, "name": "부가세 계산기", "item": "https://www.youneedthis.kr/pages/vat.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "계산된 부가세는 소수점 어떻게 처리되나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "소수점 이하는 자동으로 반올림되어 정수 단위로 표시됩니다." }
+    },
+    {
+      "@type": "Question",
+      "name": "이 계산기로 신고가 완료되나요?",
+      "acceptedAnswer": { "@type": "Answer", "text": "아니요. 참고용 도구로, 실제 신고는 국세청 홈택스를 이용해 주세요." }
+    }
+  ]
+}
+</script>
+
+<script src="/assets/js/vat.js" defer></script>
