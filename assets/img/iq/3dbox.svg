@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+  <!-- front square -->
+  <rect x="200" y="150" width="200" height="200" fill="none" stroke="#000" stroke-width="4"/>
+  <!-- back square -->
+  <rect x="300" y="100" width="200" height="200" fill="none" stroke="#000" stroke-width="4"/>
+  <!-- connections -->
+  <line x1="200" y1="150" x2="300" y2="100" stroke="#000" stroke-width="4"/>
+  <line x1="400" y1="150" x2="500" y2="100" stroke="#000" stroke-width="4"/>
+  <line x1="200" y1="350" x2="300" y2="300" stroke="#000" stroke-width="4"/>
+  <line x1="400" y1="350" x2="500" y2="300" stroke="#000" stroke-width="4"/>
+</svg>
