@@ -8,7 +8,7 @@ eleventyExcludeFromCollections: true
   {% for page in collections.all %}
     {% if page.url.endsWith(".html") %}
       <url>
-        <loc>https://youneedthis.kr{{ page.url }}</loc>
+       <loc>https://www.youneedthis.kr{{ page.url }}</loc>
         <lastmod>{{ page.date.toISOString().slice(0,10) }}</lastmod>
       </url>
     {% endif %}
