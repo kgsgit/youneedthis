@@ -5,7 +5,7 @@ const axios = require("axios");
 const dayjs = require("dayjs");
 
 // 🔑 Groq API Key (Peter님의 키로 교체됨)
-const GROQ_API_KEY = "***REMOVED***K9pGmJP5wH3ixzBccBwkWGdyb3FYg1FCZOAvYuX2SwB7jTO2GFLn";
+const GROQ_API_KEY = "";
 
 // 📝 사용자 주제 입력 (CLI에서 받기)
 const userTopic = process.argv[2] || "GPT로 블로그 자동 생성하기";
