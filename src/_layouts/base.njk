@@ -5,37 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ title }}</title>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8YX9WZEMJ1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- ✅ SEO 메타 -->
+  <meta name="description" content="{{ description | default('YouNeedThis.kr - 필요한 정보를 쉽게 모으는 생활도구 사이트') }}">
+  <link rel="canonical" href="https://youneedthis.kr{{ page.url }}" />
 
-  gtag('config', 'G-8YX9WZEMJ1');
-</script>
+  <!-- ✅ OG 태그 (SNS 공유용) -->
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description | default('YouNeedThis.kr에서 유용한 생활 정보를 확인하세요.') }}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://youneedthis.kr{{ page.url }}">
+  <meta property="og:image" content="https://youneedthis.kr/assets/img/banner.png" />
 
+  <!-- ✅ 트위터 카드 -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:description" content="{{ description | default('YouNeedThis.kr 블로그 콘텐츠') }}">
+  <meta name="twitter:image" content="https://youneedthis.kr/assets/img/banner.png">
 
-  <meta name="description" content="{{ description }}">
+  <!-- ✅ 스타일 -->
   <link rel="stylesheet" href="/assets/css/style.css" />
+
+  
+
   {% if "ip" in page.url %}
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
   {% endif %}
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8YX9WZEMJ1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}  
+    gtag('js', new Date());
+    gtag('config', 'G-8YX9WZEMJ1');
+  </script>
 </head>
 <body>
   {% include "header.html" %}
-   {#— homepage-only banner —#}
-  {% if page.url == "/" %}
-   
-  {% endif %}
-  <main>
-    {% include "ads-slot.html" %}
+  {#— homepage-only banner —#}
+  
+  {% if template %}
+<main style="padding-top: 60px;">
+{% else %}
+<main>
+{% endif %}
+
+  {% include "ads-slot.html" %}
+
+  {% if template == "post-a" %}
+    {% include "post-a.njk" %}
+  {% elif template == "post-b" %}
+    {% include "post-b.njk" %}
+  {% elif template == "post-c" %}
+    {% include "post-c.njk" %}
+  {% else %}
     {{ content | safe }}
+  {% endif %}
+
   </main>
   {% include "footer.html" %}
+
+  <!-- ✅ 스크립트들 -->
   <script src="/assets/js/main.js" defer></script>
   {% if "ip" in page.url %}
-  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" defer></script>
+    <script src="/assets/js/ip.js" defer></script>
   {% endif %}
   {% if "vat" in page.url %}
     <script src="/assets/js/vat.js" defer></script>
@@ -45,9 +79,6 @@
   {% endif %}
   {% if "exchange" in page.url %}
     <script src="/assets/js/exchange.js" defer></script>
-  {% endif %}
-  {% if "ip" in page.url %}
-    <script src="/assets/js/ip.js" defer></script>
   {% endif %}
 </body>
 </html>

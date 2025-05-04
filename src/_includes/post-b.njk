@@ -1,0 +1,14 @@
+{# src/_includes/post-b.njk #}
+<article class="post-column">
+  <header class="post-column-header">
+    <h1 class="post-column-title">{{ title }}</h1>
+    <p class="post-column-date">🗓 {{ date | date("yyyy-MM-dd") }}</p>
+    {% if description %}
+      <p class="post-column-description">{{ description }}</p>
+    {% endif %}
+    <hr class="post-column-divider" />
+  </header>
+  <section class="post-column-body">
+    {{ content | safe }}
+  </section>
+</article>

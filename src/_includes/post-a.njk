@@ -1,0 +1,13 @@
+{# src/_includes/post-a.njk #}
+<div class="post-card">
+  <header class="post-card-header">
+    <h1 class="post-card-title">{{ title }}</h1>
+    <p class="post-card-date">📅 {{ date | date("yyyy-MM-dd") }}</p>
+    {% if description %}
+      <p class="post-card-description">{{ description }}</p>
+    {% endif %}
+  </header>
+  <div class="post-card-content">
+    {{ content | safe }}
+  </div>
+</div>

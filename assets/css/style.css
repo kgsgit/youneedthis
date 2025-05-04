@@ -24,7 +24,7 @@ header {
 .header-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 15px 20px;
+  padding: 10px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,7 +37,7 @@ header {
 }
 
 .logo img {
-  height: 40px;
+  height: 60px;
 }
 
 .slogan {
@@ -71,7 +71,7 @@ header {
 /* Main Banner */
 .main-banner {
   text-align: center;
-  padding: 80px 20px 40px;
+  padding: 10px 20px 40px;
 }
 
 .main-banner h1 {
@@ -537,3 +537,160 @@ footer {
     margin: 0;
     color: #444;
   }
+
+  /* ── Post-A: 카드형 ── */
+.post-card {
+  max-width: 720px;
+  margin: 60px auto;
+  padding: 2rem;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  border-radius: 12px;
+}
+.post-card-header {
+  margin-bottom: 1.5rem;
+}
+.post-card-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: .5rem;
+}
+.post-card-date {
+  font-size: .9rem;
+  color: #666;
+  margin-bottom: .75rem;
+}
+.post-card-description {
+  font-size: 1rem;
+  color: #444;
+}
+.post-card-content {
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: #222;
+}
+
+/* ── Post-B: 정보/칼럼형 ── */
+.post-column {
+  max-width: 680px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+.post-column-header {
+  margin-bottom: 2rem;
+}
+.post-column-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #003366;
+}
+.post-column-date {
+  font-size: .95rem;
+  color: #888;
+  margin-top: .5rem;
+}
+.post-column-description {
+  font-size: 1.05rem;
+  color: #444;
+  margin-top: .75rem;
+}
+.post-column-divider {
+  border: none;
+  border-bottom: 2px solid #dde3ea;
+  margin-top: 1rem;
+}
+.post-column-body {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: #222;
+}
+
+/* ── Post-C: 이미지 강조형 ── */
+.post-image-top {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+.post-image-top-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.post-image-top-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #003366;
+}
+.post-image-top-date {
+  font-size: .9rem;
+  color: #666;
+  margin-top: .5rem;
+}
+.post-image-top-description {
+  font-size: 1.05rem;
+  color: #444;
+  margin-top: .75rem;
+}
+.post-image-top-preview img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+.post-image-top-content {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: #222;
+}
+
+.post-card {
+  background: #fff;      /* 흰 배경 */
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  max-width: 720px;
+  margin: 60px auto;
+  padding: 2rem;
+}
+.post-card-header { margin-bottom: 1.5rem; }
+.post-card-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #003366;        /* 제목만 진한 파랑 */
+}
+.post-card-date { color: #666; font-size: .9rem; }
+.post-card-description { color: #444; }
+.post-card-content {
+  color: #222;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.post-card-header,
+.post-column-header,
+.post-image-top-header {
+  background: none !important;
+  padding: 0 !important;
+}
+
+/* 날짜·설명 블록을 네비 아래에 고정 */
+.post-header-info {
+  position: sticky;
+  top: 64px;        /* 네비 바 높이만큼 */
+  background: #fff; /* 흰 배경으로 다시 채워서 메뉴 뒤가 보이지 않도록 */
+  z-index: 5;
+  padding: 1rem 0;  /* 원하시면 여백 조절 */
+}
+
+/* main 전체를 헤더 높이만큼 아래로 밀어줍니다 */
+main {
+  padding-top: 10px; /* header height(≈60px) + 여유(≈20px) */
+}
+
+.post-header-info {
+  position: sticky;
+  top: 60px;
+  background: #f9fafc;
+  z-index: 1000;
+  padding: .5rem 0;
+}

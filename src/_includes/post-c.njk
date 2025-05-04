@@ -1,0 +1,18 @@
+{# src/_includes/post-c.njk #}
+<article class="post-image-top">
+  <header class="post-image-top-header">
+    <h1 class="post-image-top-title">{{ title }}</h1>
+    <p class="post-image-top-date">📅 {{ date | date("yyyy-MM-dd") }}</p>
+    {% if description %}
+      <p class="post-image-top-description">{{ description }}</p>
+    {% endif %}
+  </header>
+  {% if image %}
+    <div class="post-image-top-preview">
+      <img src="{{ image }}" alt="{{ title }}" />
+    </div>
+  {% endif %}
+  <div class="post-image-top-content">
+    {{ content | safe }}
+  </div>
+</article>

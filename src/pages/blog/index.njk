@@ -1,0 +1,50 @@
+---
+title: 블로그
+layout: base.njk
+pagination:
+  data: collections.blog
+  size: 5
+  reverse: true
+  alias: posts
+  addAllPagesToCollections: true
+permalink: "/pages/blog/{{ pagination.pageNumber }}/"
+---
+
+<section style="max-width: 768px; margin: 0 auto; padding: 40px 20px;">
+  <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 2rem;">📚 블로그 포스트</h1>
+
+  <ul style="list-style: none; padding: 0; margin: 0;">
+    {% for post in posts %}
+    <li style="margin-bottom: 30px; padding: 20px; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+      <a href="{{ post.url }}" style="font-size: 1.25rem; font-weight: 600; color: #1d4ed8; text-decoration: none;">
+        {{ post.data.title }}
+      </a>
+      <p style="font-size: 0.9rem; color: #6b7280; margin-top: 4px;">📅 {{ post.date | date('yyyy-MM-dd') }}</p>
+
+      {% if post.data.description %}
+        <p style="margin-top: 12px; font-size: 1rem; color: #374151;">
+          {{ post.data.description }}
+        </p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+
+  <!-- ✅ 페이지네이션 영역 -->
+  <div style="margin-top: 2rem; text-align: center;">
+    {% if pagination.href.previous %}
+      <a href="{{ pagination.href.previous }}" style="margin-right: 10px;">이전</a>
+    {% endif %}
+
+    {% for pageNum in pagination.pages %}
+      <a href="/pages/blog/{{ loop.index0 }}/"
+         style="margin: 0 5px; {% if pagination.pageNumber == loop.index0 %} font-weight: bold; {% endif %}">
+        {{ loop.index }}
+      </a>
+    {% endfor %}
+
+    {% if pagination.href.next %}
+      <a href="{{ pagination.href.next }}" style="margin-left: 10px;">다음</a>
+    {% endif %}
+  </div>
+</section>
