@@ -44,6 +44,29 @@ const nextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30일 캐시
   },
   
+  // 리디렉션 설정
+  async redirects() {
+    return [
+      // 예전 사이트 URL 리디렉션
+      {
+        source: '/pages/convert.html',
+        destination: '/category/converter',
+        permanent: true,
+      },
+      {
+        source: '/pages/vat.html',
+        destination: '/tools/vat-calculator',
+        permanent: true,
+      },
+      // 추가 예전 페이지들 (필요시)
+      {
+        source: '/pages/:path*.html',
+        destination: '/tools',
+        permanent: true,
+      },
+    ]
+  },
+  
   // 캐시 헤더 설정
   async headers() {
     return [

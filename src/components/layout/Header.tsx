@@ -93,6 +93,8 @@ export function Header() {
                 width={40}
                 height={40}
                 className="brightness-60"
+                priority
+                unoptimized
               />
               <span className="text-lg font-semibold text-white">
                 {siteConfig.name}
