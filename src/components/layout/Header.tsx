@@ -114,7 +114,7 @@ export function Header() {
           </div>
           
           <div className="flex items-center space-x-4">
-            {/* Mobile menu button - Mobile First: 기본으로 보이고 태블릿부터 숨기기 */}
+            {/* Mobile menu button - 모바일에서 북마크 자리에 표시 */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="sm:hidden text-gray-300 hover:text-white p-2 rounded-md"
@@ -141,15 +141,15 @@ export function Header() {
               </div>
             </div>
             
-            {/* Bookmark button - 모바일에서는 아이콘만, 데스크톱에서는 텍스트 포함 */}
+            {/* Bookmark button - 모바일에서는 숨김, 데스크톱에서만 표시 */}
             <button 
               onClick={handleBookmark}
-              className={`${isBookmarked ? 'bg-green-600 hover:bg-green-700' : 'bg-blue-600 hover:bg-blue-700'} text-white text-xs sm:text-sm font-medium px-2 sm:px-4 py-1.5 sm:py-2 rounded-md transition-all duration-200 flex items-center space-x-1 sm:space-x-2`}
+              className={`hidden sm:flex ${isBookmarked ? 'bg-green-600 hover:bg-green-700' : 'bg-blue-600 hover:bg-blue-700'} text-white text-sm font-medium px-4 py-2 rounded-md transition-all duration-200 items-center space-x-2`}
             >
-              <svg className="w-3 h-3 sm:w-4 sm:h-4" fill={isBookmarked ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill={isBookmarked ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
               </svg>
-              <span className="hidden sm:inline">{isBookmarked ? (currentLanguage === 'ko' ? '북마크됨!' : 'Bookmarked!') : currentMenu.bookmark}</span>
+              <span>{isBookmarked ? (currentLanguage === 'ko' ? '북마크됨!' : 'Bookmarked!') : currentMenu.bookmark}</span>
             </button>
           </div>
         </div>
