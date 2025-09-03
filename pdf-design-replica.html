@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouNeedThis - PDF Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: white;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .search-bar {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 12px 50px 12px 15px;
+            font-size: 1rem;
+            background: #fafafa;
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #999;
+        }
+        
+        /* Tools Section */
+        .tools-section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .section-subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .category {
+            margin-bottom: 35px;
+        }
+        
+        .category-header {
+            margin-bottom: 15px;
+        }
+        
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .category-desc {
+            color: #666;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        
+        .tool-box {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px 15px;
+            text-align: center;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        /* 색상 시스템 - PDF와 동일 */
+        .tool-box.converter { 
+            background: #f0f8f0; 
+            border-color: #c8e6c9;
+        }
+        
+        .tool-box.generator { 
+            background: #f0f6ff; 
+            border-color: #bbdefb;
+        }
+        
+        .tool-box.validator { 
+            background: #fff8f0; 
+            border-color: #ffcc80;
+        }
+        
+        .tool-box.analyzer { 
+            background: #f8f0ff; 
+            border-color: #e1bee7;
+        }
+        
+        .tool-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        
+        .tool-desc {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        
+        .tool-button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .expansion-note {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f8ff;
+            border-left: 4px solid #4a90e2;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Sites Section */
+        .sites-section {
+            background: #fafafa;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        
+        .sites-layout {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 30px;
+            min-height: 400px;
+        }
+        
+        .categories-sidebar {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+        }
+        
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .category-list {
+            list-style: none;
+            line-height: 1.8;
+        }
+        
+        .category-item {
+            color: #4a90e2;
+            font-size: 0.9rem;
+            padding: 3px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .category-item:hover, .category-item.active {
+            background: #f0f6ff;
+        }
+        
+        .sites-display {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 20px;
+        }
+        
+        .sites-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sites-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .sites-desc {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        
+        .site-card {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+            text-align: center;
+            background: white;
+            transition: box-shadow 0.2s;
+        }
+        
+        .site-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .site-thumbnail {
+            height: 80px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .site-info {
+            padding: 12px;
+        }
+        
+        .site-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .site-description {
+            color: #666;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+        
+        .workflow-note {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .workflow-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .workflow-steps {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        /* Print optimization */
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 12px;
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+            
+            .tool-box {
+                height: 120px;
+                padding: 15px 10px;
+                break-inside: avoid;
+            }
+            
+            .sites-section {
+                break-inside: avoid;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .sites-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .sites-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1 class="logo">YouNeedThis</h1>
+        <p class="tagline">Simple tools for everyday life— fast and easy</p>
+        <div class="search-bar">
+            검색창
+            <span class="search-icon">🔍</span>
+        </div>
+    </div>
+
+    <!-- Tools Section -->
+    <div class="tools-section">
+        <h2 class="section-title">Utility Tools</h2>
+        <p class="section-subtitle">Simple online tools you can use right away — quick, easy, and free.</p>
+        
+        <!-- Converter Category -->
+        <div class="category">
+            <div class="category-header">
+                <h3 class="category-title">Converter</h3>
+                <p class="category-desc">형식을 변환합니다</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-box converter">
+                    <div>
+                        <div class="tool-title">QR 코드 생성기</div>
+                        <div class="tool-desc">URL, 텍스트를 QR코드로 변환</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+                <div class="tool-box generator">
+                    <div>
+                        <div class="tool-title">색상 변환기</div>
+                        <div class="tool-desc">HEX, RGB, HSL 색상 코드 변환</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+                <div class="tool-box validator">
+                    <div>
+                        <div class="tool-title">단위 변환기</div>
+                        <div class="tool-desc">길이, 무게, 온도 등 단위 변환</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+                <div class="tool-box analyzer">
+                    <div>
+                        <div class="tool-title">이미지 변환기</div>
+                        <div class="tool-desc">JPG, PNG, WebP 형식 변환</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generator Category -->
+        <div class="category">
+            <div class="category-header">
+                <h3 class="category-title">Generator</h3>
+                <p class="category-desc">새로운 콘텐츠를 생성합니다</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-box converter">
+                    <div>
+                        <div class="tool-title">비밀번호 생성기</div>
+                        <div class="tool-desc">안전한 랜덤 비밀번호 생성</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+                <div class="tool-box generator">
+                    <div>
+                        <div class="tool-title">Lorem Ipsum 생성기</div>
+                        <div class="tool-desc">디자인용 더미 텍스트 생성</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+                <div class="tool-box validator">
+                    <div>
+                        <div class="tool-title">UUID 생성기</div>
+                        <div class="tool-desc">고유 식별자 UUID 생성</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+                <div class="tool-box analyzer">
+                    <div>
+                        <div class="tool-title">로고 생성기</div>
+                        <div class="tool-desc">간단한 텍스트 로고 생성</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Validator Category -->
+        <div class="category">
+            <div class="category-header">
+                <h3 class="category-title">Validator</h3>
+                <p class="category-desc">유효성을 검증합니다</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-box converter">
+                    <div>
+                        <div class="tool-title">JSON 검증기</div>
+                        <div class="tool-desc">JSON 데이터 유효성 검사</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+                <div class="tool-box generator">
+                    <div>
+                        <div class="tool-title">이메일 검증기</div>
+                        <div class="tool-desc">이메일 주소 형식 검증</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+                <div class="tool-box validator">
+                    <div>
+                        <div class="tool-title">URL 검증기</div>
+                        <div class="tool-desc">웹사이트 주소 유효성 검사</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+                <div class="tool-box analyzer">
+                    <div>
+                        <div class="tool-title">CSS 검증기</div>
+                        <div class="tool-desc">CSS 문법 유효성 검사</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analyzer Category -->
+        <div class="category">
+            <div class="category-header">
+                <h3 class="category-title">Analyzer</h3>
+                <p class="category-desc">데이터를 분석합니다</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-box converter">
+                    <div>
+                        <div class="tool-title">글자수 세기</div>
+                        <div class="tool-desc">문자, 단어, 바이트 수 분석</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+                <div class="tool-box generator">
+                    <div>
+                        <div class="tool-title">나이 계산기</div>
+                        <div class="tool-desc">정확한 만나이와 한국나이 계산</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+                <div class="tool-box validator">
+                    <div>
+                        <div class="tool-title">이미지 분석기</div>
+                        <div class="tool-desc">이미지 메타데이터 및 색상 분석</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+                <div class="tool-box analyzer">
+                    <div>
+                        <div class="tool-title">SEO 분석기</div>
+                        <div class="tool-desc">웹페이지 SEO 요소 분석</div>
+                    </div>
+                    <button class="tool-button">바로사용</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="expansion-note">
+            💡 <strong>계속 추가 확장</strong> → 4개씩 채우면 다음 행으로 이동
+        </div>
+    </div>
+
+    <!-- Sites Section -->
+    <div class="sites-section">
+        <h2 class="section-title">Selected Sites</h2>
+        <p class="section-subtitle">A collection of trusted and useful websites, carefully chosen to save you time.</p>
+        
+        <div class="sites-layout">
+            <!-- Left Categories Sidebar -->
+            <div class="categories-sidebar">
+                <h3 class="sidebar-title">카테고리</h3>
+                <ul class="category-list">
+                    <li class="category-item">3D</li>
+                    <li class="category-item active">AI/머신러닝</li>
+                    <li class="category-item">오디오</li>
+                    <li class="category-item">배경</li>
+                    <li class="category-item">블로그</li>
+                    <li class="category-item">서적</li>
+                    <li class="category-item">브랜딩</li>
+                    <li class="category-item">사업</li>
+                    <li class="category-item">직업</li>
+                    <li class="category-item">CMS</li>
+                    <li class="category-item">암호</li>
+                    <li class="category-item">색상</li>
+                    <li class="category-item">지역 사회</li>
+                    <li class="category-item">카피라이터</li>
+                    <li class="category-item">CSS 생성기</li>
+                    <li class="category-item">설계</li>
+                    <li class="category-item">개발 도구</li>
+                    <li class="category-item">도메인 및 호스팅</li>
+                    <li class="category-item">전자상거래</li>
+                    <li class="category-item">이메일</li>
+                    <li class="category-item">추천</li>
+                    <li class="category-item">재미있는</li>
+                    <li class="category-item">아이콘</li>
+                    <li class="category-item">일러스트</li>
+                    <li class="category-item">영감</li>
+                    <li class="category-item">학습</li>
+                    <li class="category-item">마케팅</li>
+                    <li class="category-item">사진술</li>
+                    <li class="category-item">자리 표시자</li>
+                    <li class="category-item">팟캐스트</li>
+                    <li class="category-item">생산력</li>
+                    <li class="category-item">보안</li>
+                    <li class="category-item">셀프 호스팅</li>
+                    <li class="category-item">SEO</li>
+                    <li class="category-item">서비스</li>
+                    <li class="category-item">소프트웨어</li>
+                    <li class="category-item">템플릿</li>
+                    <li class="category-item">테스트</li>
+                    <li class="category-item">타이포그래피</li>
+                    <li class="category-item">동영상</li>
+                    <li class="category-item">워드프레스</li>
+                </ul>
+            </div>
+            
+            <!-- Right Sites Display -->
+            <div class="sites-display">
+                <div class="sites-header">
+                    <h3 class="sites-title">AI/머신러닝</h3>
+                    <p class="sites-desc">인공지능과 머신러닝 관련 최고의 도구와 리소스들</p>
+                </div>
+                
+                <div class="sites-grid">
+                    <div class="site-card">
+                        <div class="site-thumbnail">🤖</div>
+                        <div class="site-info">
+                            <div class="site-name">ChatGPT</div>
+                            <div class="site-description">OpenAI의 대화형 AI 모델</div>
+                        </div>
+                    </div>
+                    
+                    <div class="site-card">
+                        <div class="site-thumbnail">🎨</div>
+                        <div class="site-info">
+                            <div class="site-name">Midjourney</div>
+                            <div class="site-description">텍스트 프롬프트로 이미지 생성</div>
+                        </div>
+                    </div>
+                    
+                    <div class="site-card">
+                        <div class="site-thumbnail">💬</div>
+                        <div class="site-info">
+                            <div class="site-name">Claude</div>
+                            <div class="site-description">Anthropic AI 어시스턴트</div>
+                        </div>
+                    </div>
+                    
+                    <div class="site-card">
+                        <div class="site-thumbnail">🎬</div>
+                        <div class="site-info">
+                            <div class="site-name">Runway ML</div>
+                            <div class="site-description">창작자용 AI 비디오 플랫폼</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="workflow-note">
+            <div class="workflow-title">📌 사용자 플로우</div>
+            <div class="workflow-steps">
+                카테고리 클릭 → 해당 사이트들 표시 → 사이트 썸네일 클릭 → 독립된 상세페이지<br>
+                # 마우스 오버시 독립된 상세페이지로 이동
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 카테고리 클릭 시 활성 상태 변경
+        document.querySelectorAll('.category-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelector('.category-item.active').classList.remove('active');
+                this.classList.add('active');
+                
+                // 여기서 해당 카테고리의 사이트들을 표시하는 로직 추가
+                console.log('선택된 카테고리:', this.textContent);
+            });
+        });
+        
+        // 인쇄 버튼 추가 (선택사항)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'p') {
+                window.print();
+            }
+        });
+    </script>
+</body>
+</html>

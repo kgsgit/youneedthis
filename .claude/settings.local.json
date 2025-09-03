@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(npm run build:*)",
+      "Bash(curl:*)",
+      "Bash(npm start)",
+      "Bash(PORT=3001 npm start)",
+      "WebFetch(domain:www.youneedthis.kr)",
+      "WebFetch(domain:www.maxmind.com)",
+      "mcp__ide__getDiagnostics",
+      "WebFetch(domain:localhost)",
+      "Bash(pkill:*)",
+      "WebFetch(domain:mylocation.co.kr)",
+      "Bash(npm audit:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(rmdir:*)",
+      "Bash(node:*)",
+      "Bash(npx tsc:*)",
+      "Bash(find:*)",
+      "WebFetch(domain:www.toools.design)",
+      "Bash(taskkill:*)",
+      "Bash(npm install:*)",
+      "Bash(cat:*)",
+      "Read(D:\\KIM\\10 MVP_Minimum Viable Product\\11 youneedthis/**)",
+      "Read(D:\\KIM\\10 MVP_Minimum Viable Product\\11 youneedthis\\백업유니드_4_29\\src\\_layouts/**)",
+      "Read(D:\\KIM\\10 MVP_Minimum Viable Product\\11 youneedthis/**)",
+      "Read(D:\\KIM\\10 MVP_Minimum Viable Product\\11 youneedthis\\ynt\\verify/**)",
+      "Bash(npm run lint)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

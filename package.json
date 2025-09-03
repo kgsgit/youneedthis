@@ -1,0 +1,49 @@
+{
+  "name": "youneedthis-mvp",
+  "version": "1.0.0",
+  "main": "next.config.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "analyze": "ANALYZE=true npm run build",
+    "build:production": "NODE_ENV=production next build"
+  },
+  "keywords": [
+    "tools",
+    "utilities",
+    "korean",
+    "productivity",
+    "nextjs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "YouNeedThis - 당신의 생활을 빠르게 돕는 도구 모음",
+  "dependencies": {
+    "@types/node": "^24.3.0",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^19.1.11",
+    "@types/react-dom": "^19.1.7",
+    "autoprefixer": "^10.4.16",
+    "critters": "^0.0.23",
+    "eslint": "^9.34.0",
+    "eslint-config-next": "^15.5.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.1",
+    "next": "^15.5.0",
+    "pdf-lib": "^1.17.1",
+    "postcss": "^8.4.31",
+    "qrcode": "^1.5.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^15.5.2"
+  }
+}
