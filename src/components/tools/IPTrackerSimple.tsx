@@ -630,7 +630,6 @@ export function IPTrackerSimple() {
 
       {ipInfo && !loading && (
         <div key={`result-${ipInfo.ip}-${Date.now()}`} className="space-y-6">
-          {console.log('🎨 렌더링 데이터:', ipInfo)}
           
           {/* 지도 */}
           <div className="bg-gray-50 rounded-lg p-6">

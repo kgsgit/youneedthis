@@ -4,11 +4,12 @@ import { notFound } from 'next/navigation'
 import ToolPageClient from '@/app/tools/[slug]/ToolPageClient'
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const tool = siteConfig.tools.find(t => t.id === params.slug)
+  const { slug } = await params
+  const tool = siteConfig.tools.find(t => t.id === slug)
   
   if (!tool) {
     return {
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${toolName} | ${siteConfig.name}`,
       description: toolDescription,
-      url: `${siteConfig.url}/en/tools/${params.slug}`,
+      url: `${siteConfig.url}/en/tools/${slug}`,
       siteName: siteConfig.name,
       locale: 'en_US',
       type: 'website',
@@ -39,10 +40,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: toolDescription,
     },
     alternates: {
-      canonical: `${siteConfig.url}/en/tools/${params.slug}`,
+      canonical: `${siteConfig.url}/en/tools/${slug}`,
       languages: {
-        ko: `${siteConfig.url}/tools/${params.slug}`,
-        en: `${siteConfig.url}/en/tools/${params.slug}`
+        ko: `${siteConfig.url}/tools/${slug}`,
+        en: `${siteConfig.url}/en/tools/${slug}`
       }
     }
   }
@@ -54,13 +55,14 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function EnglishToolPage({ params }: Props) {
-  const tool = siteConfig.tools.find(t => t.id === params.slug)
+export default async function EnglishToolPage({ params }: Props) {
+  const { slug } = await params
+  const tool = siteConfig.tools.find(t => t.id === slug)
   
   if (!tool) {
     notFound()
   }
 
   // 기존 ToolPageClient를 재사용하되 언어를 영어로 고정
-  return <ToolPageClient params={params} forceLanguage="en" />
+  return <ToolPageClient params={{ slug }} forceLanguage="en" />
 }

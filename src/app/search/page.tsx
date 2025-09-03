@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Header } from '@/components/layout/Header'
@@ -8,7 +8,7 @@ import { Footer } from '@/components/layout/Footer'
 import { siteConfig } from '@/config/site'
 import { useLanguage } from '@/contexts/LanguageContext'
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams()
   const query = searchParams.get('q') || ''
   const { language, isHydrated } = useLanguage()
@@ -20,7 +20,7 @@ export default function SearchPage() {
     if (query) {
       // 검색 로직
       const tools = siteConfig.tools
-      const sites = siteConfig.externalSites || []
+      const sites = siteConfig.sites || []
       
       const filteredTools = tools.filter(tool => {
         const searchTerm = query.toLowerCase()
@@ -156,5 +156,21 @@ export default function SearchPage() {
       
       <Footer />
     </>
+  )
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white">
+        <Header />
+        <div className="container mx-auto px-4 py-8">
+          <div className="animate-pulse">Loading search...</div>
+        </div>
+        <Footer />
+      </div>
+    }>
+      <SearchContent />
+    </Suspense>
   )
 }

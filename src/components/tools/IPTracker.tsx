@@ -982,7 +982,7 @@ export function IPTracker() {
 
       {/* IP 위치 정보 */}
       {geolocationData?.consensus && !loading && (
-        <div key={`results-${geolocationData.consensus.ip}-${geolocationData.timestamp}-${forceUpdate}`} className="space-y-6">
+        <div key={`results-${geolocationData.consensus.ip}-${Date.now()}-${forceUpdate}`} className="space-y-6">
           {/* 정확도 및 신뢰도 표시 (고급 모드) */}
           {advancedMode && (
             <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6 border border-blue-200">
@@ -1035,8 +1035,8 @@ export function IPTracker() {
             {/* 임베디드 지도 */}
             <div className="w-full h-64 rounded-lg overflow-hidden border">
               <iframe
-                key={`map-${geolocationData.consensus.ip}-${geolocationData.timestamp}`}
-                src={`https://www.openstreetmap.org/export/embed.html?bbox=${geolocationData.consensus.lon-0.01},${geolocationData.consensus.lat-0.01},${geolocationData.consensus.lon+0.01},${geolocationData.consensus.lat+0.01}&layer=mapnik&marker=${geolocationData.consensus.lat},${geolocationData.consensus.lon}&t=${geolocationData.timestamp}`}
+                key={`map-${geolocationData.consensus.ip}-${Date.now()}`}
+                src={`https://www.openstreetmap.org/export/embed.html?bbox=${geolocationData.consensus.lon-0.01},${geolocationData.consensus.lat-0.01},${geolocationData.consensus.lon+0.01},${geolocationData.consensus.lat+0.01}&layer=mapnik&marker=${geolocationData.consensus.lat},${geolocationData.consensus.lon}&t=${Date.now()}`}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
