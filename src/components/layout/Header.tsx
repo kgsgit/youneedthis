@@ -90,9 +90,9 @@ export function Header() {
               <Image 
                 src="/images/logo_s.svg"
                 alt="YouNeedThis Logo"
-                width={40}
-                height={40}
-                className="brightness-60"
+                width={48}
+                height={48}
+                className="w-12 h-12 brightness-90"
                 priority
                 unoptimized
               />

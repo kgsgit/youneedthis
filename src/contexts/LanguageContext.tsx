@@ -35,9 +35,32 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         return
       }
 
-      // 간단하게: 기본값은 항상 한국어
-      const detectedLang = 'ko'
-      const detectedRegion = 'kr'
+      // 브라우저 언어 감지
+      const browserLang = navigator.language || navigator.languages?.[0] || 'ko-KR'
+      const isKorean = browserLang.startsWith('ko')
+      
+      // IP 기반 지역 감지 (간단한 타임존 기반 추정)
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+      const isKoreanTimezone = timezone === 'Asia/Seoul'
+      
+      // 언어 및 지역 결정 로직
+      let detectedLang: Language = 'en' // 기본값을 영어로 변경
+      let detectedRegion: Region = 'global' // 기본값을 글로벌로 변경
+      
+      // 한국어 브라우저이거나 한국 시간대인 경우 한국 설정
+      if (isKorean || isKoreanTimezone) {
+        detectedLang = 'ko'
+        detectedRegion = 'kr'
+      }
+      
+      console.log('🌐 Language Detection:', {
+        browserLang,
+        timezone,
+        isKorean,
+        isKoreanTimezone,
+        detectedLang,
+        detectedRegion
+      })
       
       setLanguageState(detectedLang)
       setRegionState(detectedRegion)
