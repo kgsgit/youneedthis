@@ -32,7 +32,11 @@
       "Bash(git add:*)",
       "Bash(git remote add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(npm run typecheck:*)",
+      "Read(/D:\\2025\\youneedthis-mvp\\public/**)",
+      "Read(/D:\\2025\\youneedthis-mvp/**)",
+      "Bash(git pull:*)"
     ],
     "deny": [],
     "ask": []
