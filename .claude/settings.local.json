@@ -38,7 +38,11 @@
       "WebFetch(domain:www.youneedthis.kr)",
       "Read(/D:\\2025\\youneedthis-mvp\\public/**)",
       "Read(/D:\\2025\\youneedthis-mvp/**)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "Read(/D:\\2025\\youneedthis-mvp\\public/**)",
+      "WebFetch(domain:youneedthis.kr)",
+      "Read(/D:\\2025\\youneedthis-mvp\\public/**)",
+      "Read(/D:\\2025\\youneedthis-mvp/**)"
     ],
     "deny": [],
     "ask": []
