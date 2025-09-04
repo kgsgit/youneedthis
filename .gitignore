@@ -91,6 +91,7 @@ out
 # Gatsby files
 .cache/
 public
+!public/ads.txt
 
 # Storybook build outputs
 .out
