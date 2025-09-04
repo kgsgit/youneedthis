@@ -149,6 +149,22 @@ export const siteConfig = {
 
   tools: [
     {
+      id: "image-mosaic",
+      category: "image",
+      regions: ["kr", "global"],
+      name: { ko: "이미지 모자이크", en: "Image Mosaic" },
+      description: { 
+        ko: "이미지에 모자이크 효과를 적용하여 개인정보 보호",
+        en: "Apply mosaic effects to images for privacy protection"
+      },
+      keywords: { 
+        ko: "모자이크, 픽셀화, 블러, 개인정보보호, 이미지편집, 얼굴가리기, 민감정보, 프라이버시, 이미지처리, 사진편집, 신원보호, 마스킹, 흐리게, 가림처리",
+        en: "mosaic, pixelate, blur, privacy protection, image editing, face blur, sensitive information, privacy, image processing, photo editing, anonymize, masking, censoring"
+      },
+      icon: "bi-grid-3x3",
+      component: "ImageMosaic"
+    },
+    {
       id: "image-editor",
       category: "image",
       regions: ["kr", "global"],
